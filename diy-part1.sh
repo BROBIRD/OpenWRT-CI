@@ -13,3 +13,6 @@ sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 
 # Add a feed source
 #sed -i '$a src-git lienol https://github.com/Lienol/openwrt-package' feeds.conf.default
+
+str_tmp="sed -i '1s/env python/python2/g' $(STAGING_DIR_HOST)/bin/mklibs
+sed -i "11a\\\t\\$str_tmp" ./include/rootfs.mk
