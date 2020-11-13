@@ -16,7 +16,7 @@ sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 
 
 git clone https://github.com/kongfl888/luci-app-adguardhome.git package/extra/luci-app-adguardhome
-sed -i '13 PKG_BUILD_DEPENDS += lua/host luci-base/host' package/extra/luci-app-adguardhome/Makefile
+sed -i '13 PKG_BUILD_DEPENDS += lua\/host luci-base\/host' package/extra/luci-app-adguardhome/Makefile
 git clone https://github.com/txyiezero/luci-app-udp2raw.git package/extra/luci-app-udp2raw
 sed -i '65,68d' package/extra/luci-app-udp2raw/Makefile
 git clone https://github.com/txyiezero/openwrt-udp2raw.git package/extra/openwrt-udp2raw
