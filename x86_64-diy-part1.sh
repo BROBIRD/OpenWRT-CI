@@ -64,6 +64,6 @@ mkdir -p package/extra/luci-app-openclash/luci-app-openclash/files/etc/openclash
 mv /tmp/clash package/extra/luci-app-openclash/luci-app-openclash/files/etc/openclash/core/clash_tun >/dev/null 2>&1
 rm -rf /tmp/clash.tar.gz >/dev/null 2>&1
 sed -i '100i\	$(INSTALL_DIR) $(1)/etc/openclash/core' package/extra/luci-app-openclash/luci-app-openclash/Makefile
-sed -i '101i\	$(INSTALL_BIN) ./files/root/etc/openclash/core/clash $(1)/etc/openclash/core/clash' package/extra/luci-app-openclash/luci-app-openclash/Makefile
-sed -i '102i\	$(INSTALL_BIN) ./files/root/etc/openclash/core/clash_game $(1)/etc/openclash/core/clash_game' package/extra/luci-app-openclash/luci-app-openclash/Makefile
-sed -i '103i\	$(INSTALL_BIN) ./files/root/etc/openclash/core/clash_tun $(1)/etc/openclash/core/clash_tun' package/extra/luci-app-openclash/luci-app-openclash/Makefile
+sed -i '101i\	$(INSTALL_BIN) $(PKG_BUILD_DIR)/root/etc/openclash/core/clash $(1)/etc/openclash/core/clash' package/extra/luci-app-openclash/luci-app-openclash/Makefile
+sed -i '102i\	$(INSTALL_BIN) $(PKG_BUILD_DIR)/root/etc/openclash/core/clash_game $(1)/etc/openclash/core/clash_game' package/extra/luci-app-openclash/luci-app-openclash/Makefile
+sed -i '103i\	$(INSTALL_BIN) $(PKG_BUILD_DIR)/root/etc/openclash/core/clash_tun $(1)/etc/openclash/core/clash_tun' package/extra/luci-app-openclash/luci-app-openclash/Makefile
