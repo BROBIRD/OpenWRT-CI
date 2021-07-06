@@ -57,9 +57,9 @@ mv /tmp/clash package/extra/luci-app-openclash/luci-app-openclash/files/etc/open
 rm -rf /tmp/clash.tar.gz >/dev/null 2>&1
 
 CORE_LV=$(curl -sL --connect-timeout 10 --retry 2 https://raw.githubusercontent.com/vernesong/OpenClash/master/core_version | sed -n '2p' 2>/dev/null)
-curl -sL -m 30 --retry 2 https://github.com/vernesong/OpenClash/releases/download/TUN-Premium/clash-linux-amd64-"$CORE_LV".tar.gz -o /tmp/clash.tar.gz
-tar zxvf /tmp/clash.tar.gz -C /tmp >/dev/null 2>&1
+curl -sL -m 30 --retry 2 https://github.com/vernesong/OpenClash/releases/download/TUN-Premium/clash-linux-amd64-"$CORE_LV".gz -o /tmp/clash.gz
+gzip -cd /tmp/clash.gz > /tmp/clash
 chmod +x /tmp/clash >/dev/null 2>&1
 mkdir -p package/extra/luci-app-openclash/luci-app-openclash/files/etc/openclash/core
 mv /tmp/clash package/extra/luci-app-openclash/luci-app-openclash/files/etc/openclash/core/clash_tun >/dev/null 2>&1
-rm -rf /tmp/clash.tar.gz >/dev/null 2>&1
+rm -rf /tmp/clash.gz >/dev/null 2>&1
