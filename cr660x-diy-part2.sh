@@ -10,6 +10,7 @@
 
 # Modify default IP
 #sed -i 's/192.168.1/10.0.0/g' package/base-files/files/bin/config_generate
+sed -i 's/OpenWrt/Linux/g' package/base-files/files/bin/config_generate
 sed -i '/--dport 53 -j REDIRECT --to-ports 53/d' package/lean/default-settings/files/zzz-default-settings
 sed -i -r '/elseif szType == ("ssd"|'\''vmess'\'') then/i\\t\tresult.fast_open = "1"' feeds/helloworld/luci-app-ssr-plus/root/usr/share/shadowsocksr/subscribe.lua
 rm -rf package/lean/luci-theme-argon  
