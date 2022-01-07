@@ -15,8 +15,8 @@ sed -i '$a\src-git helloworld https://github.com/fw876/helloworld' feeds.conf.de
 #sed -i '$a src-git lienol https://github.com/Lienol/openwrt-package' feeds.conf.default
 
 
-git clone https://github.com/Hyy2001X/luci-app-adguardhome.git package/extra/luci-app-adguardhome
-sed -i '10i\PKG_BUILD_DEPENDS += lua/host luci-base/host' package/extra/luci-app-adguardhome/Makefile
+git clone https://github.com/rufengsuixing/luci-app-adguardhome.git package/extra/luci-app-adguardhome
+#sed -i '10i\PKG_BUILD_DEPENDS += lua/host luci-base/host' package/extra/luci-app-adguardhome/Makefile
 git clone https://github.com/Andylive5518/luci-app-udp2raw.git package/extra/luci-app-udp2raw
 sed -i '65,68d' package/extra/luci-app-udp2raw/Makefile
 git clone https://github.com/txyiezero/openwrt-udp2raw.git package/extra/openwrt-udp2raw
