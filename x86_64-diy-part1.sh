@@ -35,12 +35,19 @@ sed -i '72i\	$(INSTALL_BIN) ./files/root/usr/bin/speederv2 $(1)/usr/bin/speederv
 
 git clone https://github.com/jerrykuku/luci-app-jd-dailybonus.git package/extra/luci-app-jd-dailybonus
 
-# mkdir package/extra/luci-app-openclash
-# cd package/extra/luci-app-openclash
-# git init
-# git remote add -f origin https://github.com/vernesong/OpenClash.git
-# git config core.sparsecheckout true
-# echo "luci-app-openclash" >> .git/info/sparse-checkout
-# git pull origin master
-# git branch --set-upstream-to=origin/master master
-# cd -
+mkdir package/extra/luci-app-openclash
+cd package/extra/luci-app-openclash
+git init
+git remote add -f origin https://github.com/vernesong/OpenClash.git
+git config core.sparsecheckout true
+echo "luci-app-openclash" >> .git/info/sparse-checkout
+git pull origin master
+git branch --set-upstream-to=origin/master master
+cd -
+# integration clash core 实现编译更新后直接可用，不用手动下载clash内核
+curl -sL -m 30 --retry 2 https://github.com/vernesong/OpenClash/releases/download/Clash/clash-linux-amd64.tar.gz -o /tmp/clash.tar.gz
+tar zxvf /tmp/clash.tar.gz -C /tmp >/dev/null 2>&1
+chmod +x /tmp/clash >/dev/null 2>&1
+mkdir -p .../package/extra/luci-app-openclash/luci-app-openclash/files/etc/openclash/core
+mv /tmp/clash .../package/extra/luci-app-openclash/luci-app-openclash/files/etc/openclash/core/clash >/dev/null 2>&1
+rm -rf /tmp/clash.tar.gz >/dev/null 2>&1
