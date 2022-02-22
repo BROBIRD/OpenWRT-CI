@@ -17,5 +17,6 @@ sed -i -r '/elseif szType == ("ssd"|'\''vmess'\'') then/i\\t\tresult.fast_open =
 echo '/etc/openclash/' >> package/base-files/files/etc/sysupgrade.conf
 
 # Update Luci theme argon  
-rm -rf package/lean/luci-theme-argon  
-git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/lean/luci-theme-argon
+rm -rf feeds/luci/themes/luci-theme-argon
+git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/extra/luci-theme-argon
+git clone https://github.com/jerrykuku/luci-app-argon-config.git package/extra/luci-app-argon-config
