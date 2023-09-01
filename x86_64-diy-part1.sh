@@ -51,3 +51,6 @@ chmod +x /tmp/clash >/dev/null 2>&1
 mkdir -p .../package/extra/luci-app-openclash/luci-app-openclash/files/etc/openclash/core
 mv /tmp/clash .../package/extra/luci-app-openclash/luci-app-openclash/files/etc/openclash/core/clash >/dev/null 2>&1
 rm -rf /tmp/clash.tar.gz >/dev/null 2>&1
+
+git clone https://github.com/sirpdboy/luci-app-eqosplus package/extra/luci-app-eqosplus
+git clone https://github.com/sirpdboy/luci-app-lucky.git package/extra/lucky
