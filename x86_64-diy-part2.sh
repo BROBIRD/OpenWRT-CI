@@ -60,7 +60,7 @@ git clone https://github.com/sbwml/feeds_packages_net_curl feeds/packages/net/cu
 # nginx - latest version
 rm -rf feeds/packages/net/nginx
 git clone https://github.com/sbwml/feeds_packages_net_nginx feeds/packages/net/nginx -b quic
-curl -s https://raw.githubusercontent.com/kn007/patch/master/nginx_dynamic_tls_records.patch feeds/packages/net/nginx/patches/nginx/105-nginx_dynamic_tls_records.patch
+curl -s https://raw.githubusercontent.com/kn007/patch/master/nginx_dynamic_tls_records.patch > feeds/packages/net/nginx/patches/nginx/105-nginx_dynamic_tls_records.patch
 sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g;s/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/net/nginx/files/nginx.init
 
 # nginx - ubus
