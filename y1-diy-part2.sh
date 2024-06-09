@@ -17,8 +17,9 @@ echo "sed -i 's/lock/#lock/g' /etc/ppp/options" >> package/lean/default-settings
 echo "echo 'refuse-eap' >> /etc/ppp/options" >> package/lean/default-settings/files/zzz-default-settings
 echo "echo 'refuse-pap' >> /etc/ppp/options" >> package/lean/default-settings/files/zzz-default-settings
 echo 'exit 0' >> package/lean/default-settings/files/zzz-default-settings
-sed -i -r '/elseif szType == ("ssd"|'\''vmess'\'') then/i\\t\tresult.fast_open = "1"' feeds/helloworld/luci-app-ssr-plus/root/usr/share/shadowsocksr/subscribe.lua
+# sed -i -r '/elseif szType == ("ssd"|'\''vmess'\'') then/i\\t\tresult.fast_open = "1"' feeds/helloworld/luci-app-ssr-plus/root/usr/share/shadowsocksr/subscribe.lua
+# Update Luci theme argon  
 rm -rf feeds/luci/themes/luci-theme-argon
+rm -rf feeds/luci/applications/luci-app-argon-config
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/extra/luci-theme-argon
-rm -rf target/linux/ramips/patches-5.4/999-fix-hwnat.patch
-rm -rf target/linux/ramips/patches-5.10/999-fix-hwnat.patch
+git clone -b 18.06 https://github.com/jerrykuku/luci-app-argon-config.git package/extra/luci-app-argon-config
