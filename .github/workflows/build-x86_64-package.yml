@@ -116,15 +116,27 @@ jobs:
       if: (!cancelled())
       run: df -hT
 
-    - name: Compile the tools and packages
+    # - name: Compile the tools and packages
+    #   id: compile
+    #   run: |
+    #     cd openwrt
+    #     make -C feeds/packages/net/nginx compile V=s
+    #     echo "::set-output name=status::success"
+    #     grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
+    #     [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
+    #     echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
+
+    - name: Compile the Firmware
       id: compile
       run: |
         cd openwrt
-        make -C feeds/packages/net/nginx compile V=s
+        make tools/install -j$(nproc)
+        make toolchain/install -j$(nproc)
+        make -j1 V=s
         echo "::set-output name=status::success"
         grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
         [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
-        echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
+        echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV    
 
     - name: Check space usage
       if: (!cancelled())
