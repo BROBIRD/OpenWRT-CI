@@ -65,11 +65,11 @@ sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g;s/procd_set_param 
 sed -i '261a\config NGINX_NJS_MODULE\n\tbool\n\tprompt "Enable NJS module"\n\thelp\n\t\tAdd support for Javascript dynamic module.\n\tdefault n\n' feeds/packages/net/nginx/Config_ssl.in
 sed -i '582a\$(eval $(call BuildPackage,nginx-mod-njs))' feeds/packages/net/nginx/Makefile
 sed -i '566a\ifeq ($(CONFIG_NGINX_NJS_MODULE),y)\n  $(eval $(call Download,nginx-njs))\n  $(Prepare/nginx-njs)\nendif\n' feeds/packages/net/nginx/Makefile
-sed -i '453a\define Download/nginx-njs\n  VERSION:=9d4bf6c60aa60a828609f64d1b5c50f71bb7ef62\n  SUBDIR:=nginx-njs\n  FILE:=njs-$$(VERSION).tax.xz\n  URL:=https://github.com/nginx/njs.git\n  MIRROR_HASH:=skip\n  PROTO:=git\nendef\n\ndefine Prepare/nginx-njs\n\t$(eval $(Download/nginx-njs))\n\txzcat $(DL_DIR)/$(FILE) | tar -C $(PKG_BUILD_DIR) $(TAR_OPTIONS)\nendef\n' feeds/packages/net/nginx/Makefile
+sed -i '453a\define Download/nginx-njs\n  VERSION:=9d4bf6c60aa60a828609f64d1b5c50f71bb7ef62\n  SUBDIR:=nginx-njs\n  FILE:=njs-$$(VERSION).tar.xz\n  URL:=https://github.com/nginx/njs.git\n  MIRROR_HASH:=skip\n  PROTO:=git\nendef\n\ndefine Prepare/nginx-njs\n\t$(eval $(Download/nginx-njs))\n\txzcat $(DL_DIR)/$(FILE) | tar -C $(PKG_BUILD_DIR) $(TAR_OPTIONS)\nendef\n' feeds/packages/net/nginx/Makefile
 sed -i '330a\define Package/nginx-mod-njs\n  TITLE:=njs in nginx\n  SECTION:=net\n  CATEGORY:=Network\n  SUBMENU:=Web Servers/Proxies\n  TITLE:=dynamic module for Nginx\n  URL:=http://nginx.org/\n  DEPENDS:=+nginx\n  CONFLICTS:=nginx-all-module\nendef\n\ndefine Package/nginx-mod-njs/description\n Dynamic njs module for Nginx.\nendef\n' feeds/packages/net/nginx/Makefile
-sed -i '310a\\t--add-module=$(PKG_BUILD_DIR)/nginx-njs \\' feeds/packages/net/nginx/Makefile
-sed -i '287a\  ifeq ($(CONFIG_NGINX_NJS_MODULE),y)\n    ADDITIONAL_MODULES += --add-module=$(PKG_BUILD_DIR)/nginx-njs\n  endif\n' feeds/packages/net/nginx/Makefile
-sed -i '72a\\tCONFIG_NGINX_NJS_MODULE \\' feeds/packages/net/nginx/Makefile
+sed -i '311 s/^/\t--add-module=$(PKG_BUILD_DIR)/nginx-njs/nginx \\\n/' feeds/packages/net/nginx/Makefile
+sed -i '287a\  ifeq ($(CONFIG_NGINX_NJS_MODULE),y)\n    ADDITIONAL_MODULES += --add-module=$(PKG_BUILD_DIR)/nginx-njs/nginx\n  endif\n' feeds/packages/net/nginx/Makefile
+sed -i '73 s/^/\tCONFIG_NGINX_NJS_MODULE \\\n/' feeds/packages/net/nginx/Makefile
 
 # nginx - ubus
 sed -i 's/ubus_parallel_req 2/ubus_parallel_req 6/g' feeds/packages/net/nginx/files-luci-support/60_nginx-luci-support
