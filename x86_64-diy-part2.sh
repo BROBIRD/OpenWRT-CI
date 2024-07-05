@@ -67,7 +67,7 @@ sed -i '582a\$(eval $(call BuildPackage,nginx-mod-njs))' feeds/packages/net/ngin
 sed -i '566a\ifeq ($(CONFIG_NGINX_NJS_MODULE),y)\n  $(eval $(call Download,nginx-njs))\n  $(Prepare/nginx-njs)\nendif\n' feeds/packages/net/nginx/Makefile
 sed -i '453a\define Download/nginx-njs\n  VERSION:=9d4bf6c60aa60a828609f64d1b5c50f71bb7ef62\n  SUBDIR:=nginx-njs\n  FILE:=njs-$$(VERSION).tar.xz\n  URL:=https://github.com/nginx/njs.git\n  MIRROR_HASH:=skip\n  PROTO:=git\nendef\n\ndefine Prepare/nginx-njs\n\t$(eval $(Download/nginx-njs))\n\txzcat $(DL_DIR)/$(FILE) | tar -C $(PKG_BUILD_DIR) $(TAR_OPTIONS)\nendef\n' feeds/packages/net/nginx/Makefile
 sed -i '330a\define Package/nginx-mod-njs\n  TITLE:=njs in nginx\n  SECTION:=net\n  CATEGORY:=Network\n  SUBMENU:=Web Servers/Proxies\n  TITLE:=dynamic module for Nginx\n  URL:=http://nginx.org/\n  DEPENDS:=+nginx\n  CONFLICTS:=nginx-all-module\nendef\n\ndefine Package/nginx-mod-njs/description\n Dynamic njs module for Nginx.\nendef\n' feeds/packages/net/nginx/Makefile
-sed -i '311 s/^/\t--add-module=$(PKG_BUILD_DIR)/nginx-njs/nginx \\\n/' feeds/packages/net/nginx/Makefile
+sed -i '311 s#^#\t--add-module=$(PKG_BUILD_DIR)/nginx-njs/nginx \\\n#' feeds/packages/net/nginx/Makefile
 sed -i '287a\  ifeq ($(CONFIG_NGINX_NJS_MODULE),y)\n    ADDITIONAL_MODULES += --add-module=$(PKG_BUILD_DIR)/nginx-njs/nginx\n  endif\n' feeds/packages/net/nginx/Makefile
 sed -i '73 s/^/\tCONFIG_NGINX_NJS_MODULE \\\n/' feeds/packages/net/nginx/Makefile
 
