@@ -91,6 +91,7 @@ jobs:
 
     - name: Generate Variables
       run: |
+        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         SOURCE_REPO="$(echo $REPO_URL | awk -F '/' '{print $(NF)}')"
         echo "SOURCE_REPO=$SOURCE_REPO" >> $GITHUB_ENV
         DEVICE_TARGET=$(cat .config | grep CONFIG_TARGET_BOARD | awk -F '"' '{print $2}')
