@@ -28,6 +28,7 @@ env:
   CONFIG_FILE: x86_64.config
   DIY_P1_SH: x86_64-diy-part1.sh
   DIY_P2_SH: x86_64-diy-part2.sh
+  CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
@@ -108,7 +109,6 @@ jobs:
         mixkey: ${{ env.SOURCE_REPO }}-${{ env.REPO_BRANCH }}-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
         prefix: ${{ env.OPENWRT_PATH }}
   
-
     - name: Load custom feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
