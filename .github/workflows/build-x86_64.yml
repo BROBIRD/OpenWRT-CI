@@ -92,7 +92,6 @@ jobs:
         echo "OPENWRT_PATH=$GITHUB_WORKSPACE/openwrt" >> $GITHUB_ENV
 
     - name: Generate Variables
-      working-directory: $GITHUB_WORKSPACE
       run: |
         [ -e $CONFIG_FILE ] && cp $CONFIG_FILE openwrt/.config
         SOURCE_REPO="$(echo $REPO_URL | awk -F '/' '{print $(NF)}')"
@@ -125,7 +124,6 @@ jobs:
       run: cd openwrt && ./scripts/feeds install -a
 
     - name: Load custom configuration
-      working-directory: $GITHUB_WORKSPACE
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && cp $CONFIG_FILE openwrt/.config
