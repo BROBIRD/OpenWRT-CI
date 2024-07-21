@@ -126,5 +126,5 @@ git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 sed -i 's/PKG_VERSION:=1.18.1/PKG_VERSION:=1.27.0/g' feeds/packages/libs/c-ares/Makefile
 sed -i 's/PKG_HASH:=1a7d52a8a84a9fbffb1be9133c0f6e17217d91ea5a6fa61f6b4729cda78ebbcf/PKG_HASH:=0a72be66959955c43e2af2fbd03418e82a2bd5464604ec9a62147e37aceb420b/g' feeds/packages/libs/c-ares/Makefile
 
-sed -i "50a\define Build/InstallDev\n	$(call Build/InstallDev/cmake,$(1))\n	$(SED) 's,/usr/bin,$$$${prefix}/lib,g' $(1)/usr/lib/pkgconfig/libcares.pc\n	$(SED) 's,/usr/include,$$$${prefix}/include,g' $(1)/usr/lib/pkgconfig/libcares.pc\n	$(SED) 's,/usr/lib,$$$${prefix}/lib,g' $(1)/usr/lib/pkgconfig/libcares.pc\n" feeds/packages/libs/c-ares/Makefile
+sed -i '50a\define Build/InstallDev\n\t$(call Build/InstallDev/cmake,$(1))\n\t$(SED) '\''s,/usr/bin,$$$${prefix}/lib,g'\'' $(1)/usr/lib/pkgconfig/libcares.pc\n\t$(SED) '\''s,/usr/include,$$$${prefix}/include,g'\'' $(1)/usr/lib/pkgconfig/libcares.pc\n\t$(SED) '\''s,/usr/lib,$$$${prefix}/lib,g'\'' $(1)/usr/lib/pkgconfig/libcares.pc\n' feeds/packages/libs/c-ares/Makefile
 endef
