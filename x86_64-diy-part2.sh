@@ -66,7 +66,7 @@ git clone https://github.com/sbwml/feeds_packages_net_curl feeds/packages/net/cu
 
 # nginx - latest version
 rm -rf feeds/packages/net/nginx
-git clone https://github.com/sbwml/feeds_packages_net_nginx feeds/packages/net/nginx -b quic
+git clone https://github.com/sbwml/feeds_packages_net_nginx feeds/packages/net/nginx -b quic+zstd
 curl -s https://raw.githubusercontent.com/kn007/patch/master/nginx_dynamic_tls_records.patch > feeds/packages/net/nginx/patches/nginx/105-nginx_dynamic_tls_records.patch
 sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g;s/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/net/nginx/files/nginx.init
 # sed -i '261a\config NGINX_NJS_MODULE\n\tbool\n\tprompt "Enable NJS module"\n\thelp\n\t\tAdd support for Javascript dynamic module.\n\tdefault n\n' feeds/packages/net/nginx/Config_ssl.in
@@ -83,7 +83,7 @@ sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g;s/procd_set_param 
 sed -i 's/ubus_parallel_req 2/ubus_parallel_req 6/g' feeds/packages/net/nginx/files-luci-support/60_nginx-luci-support
 sed -i '/ubus_parallel_req/a\        ubus_script_timeout 600;' feeds/packages/net/nginx/files-luci-support/60_nginx-luci-support
 
-# nginx - uwsgi timeout & enable brotli
+# nginx - uwsgi timeout & enable brotli+zstd
 curl -s https://raw.githubusercontent.com/sbwml/r4s_build_script/master/openwrt/nginx/luci.locations > feeds/packages/net/nginx/files-luci-support/luci.locations
 curl -s https://raw.githubusercontent.com/sbwml/r4s_build_script/master/openwrt/nginx/uci.conf.template > feeds/packages/net/nginx-util/files/uci.conf.template
 
