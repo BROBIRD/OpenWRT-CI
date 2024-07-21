@@ -121,3 +121,7 @@ find ./ | grep Makefile | grep mosdns | xargs rm -f
 
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
+
+# c-ares
+sed -i 's/PKG_VERSION:=1.18.1/PKG_VERSION:=1.27.0/g' feeds/packages/libs/c-ares/Makefile
+sed -i 's/PKG_HASH:=1a7d52a8a84a9fbffb1be9133c0f6e17217d91ea5a6fa61f6b4729cda78ebbcf/PKG_HASH:=0a72be66959955c43e2af2fbd03418e82a2bd5464604ec9a62147e37aceb420b/g' feeds/packages/libs/c-ares/Makefile
