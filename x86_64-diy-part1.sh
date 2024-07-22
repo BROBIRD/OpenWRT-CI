@@ -11,7 +11,7 @@
 # Uncomment a feed source
 sed -i '$a\src-git helloworld https://github.com/fw876/helloworld;main' feeds.conf.default
 # sed -i '$a\src-git passwall https://github.com/xiaorouji/openwrt-passwall' feeds.conf.default
-sed -i '$a\src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
+
 
 # Add a feed source
 #sed -i '$a src-git lienol https://github.com/Lienol/openwrt-package' feeds.conf.default
@@ -40,6 +40,18 @@ cd -
 # mkdir -p .../package/extra/luci-app-openclash/luci-app-openclash/files/etc/openclash/core
 # mv /tmp/clash .../package/extra/luci-app-openclash/luci-app-openclash/files/etc/openclash/core/clash >/dev/null 2>&1
 # rm -rf /tmp/clash.tar.gz >/dev/null 2>&1
+
+mkdir package/extra/gost
+cd package/extra/gost
+git init
+git remote add -f origin https://github.com/kenzok8/openwrt-packages.git
+git config core.sparsecheckout true
+echo "luci-app-gost" >> .git/info/sparse-checkout
+echo "gost" >> .git/info/sparse-checkout
+git pull --depth 1 origin master
+git branch --set-upstream-to=origin/master master
+cd -
+
 
 git clone https://github.com/sirpdboy/luci-app-eqosplus package/extra/luci-app-eqosplus
 git clone https://github.com/sirpdboy/luci-app-lucky.git package/extra/lucky
