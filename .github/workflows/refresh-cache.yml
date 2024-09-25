@@ -11,7 +11,6 @@ jobs:
     name: fetch cache
     runs-on: ubuntu-latest
     env:
-      SOURCE_REPO: 'BROBIRD/OpenWRT-CI'
       REPO_URL: https://github.com/coolsnowwolf/lede
       REPO_BRANCH: master
 
@@ -49,6 +48,7 @@ jobs:
         # working-directory: ${{ env.WORKING_DIR }}
         run: |
             [ -e $CONFIG_FILE ] && cp $CONFIG_FILE openwrt/.config
+            SOURCE_REPO="$(echo $REPO_URL | awk -F '/' '{print $(NF)}')"
             echo "SOURCE_REPO=$SOURCE_REPO" >> $GITHUB_ENV
             DEVICE_TARGET=$(cat openwrt/.config | grep CONFIG_TARGET_BOARD | awk -F '"' '{print $2}')
             echo "DEVICE_TARGET=$DEVICE_TARGET" >> $GITHUB_ENV
