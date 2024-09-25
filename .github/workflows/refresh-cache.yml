@@ -13,6 +13,7 @@ jobs:
     env:
       REPO_URL: https://github.com/coolsnowwolf/lede
       REPO_BRANCH: master
+      TZ: Asia/Shanghai
 
     steps:
       - name: Checkout
