@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SOURCE_REPO: 'BROBIRD/OpenWRT-CI'
+      REPO_URL: https://github.com/coolsnowwolf/lede
       REPO_BRANCH: master
 
     steps:
@@ -21,12 +22,6 @@ jobs:
           ref: master
           fetch-depth: 0
 
-      - name: Clone source code
-        # working-directory: $GITHUB_WORKSPACE
-        run: |
-          df -hT $PWD
-          git clone $REPO_URL -b $REPO_BRANCH $GITHUB_WORKSPACE/openwrt
-          echo "OPENWRT_PATH=$GITHUB_WORKSPACE/openwrt" >> $GITHUB_ENV
 
       - name: Initialization environment
         env:
@@ -41,6 +36,13 @@ jobs:
             sudo -E apt-get -qq clean
             sudo timedatectl set-timezone "$TZ"
             sudo chown $USER:$GROUPS $GITHUB_WORKSPACE
+
+      - name: Clone source code
+        # working-directory: $GITHUB_WORKSPACE
+        run: |
+          df -hT $PWD
+          git clone $REPO_URL -b $REPO_BRANCH $GITHUB_WORKSPACE/openwrt
+          echo "OPENWRT_PATH=$GITHUB_WORKSPACE/openwrt" >> $GITHUB_ENV
 
       - name: Generate cache mixkey
         id: gen_cache_mixkey
