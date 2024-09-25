@@ -14,6 +14,7 @@ jobs:
       REPO_URL: https://github.com/coolsnowwolf/lede
       REPO_BRANCH: master
       TZ: Asia/Shanghai
+      CONFIG_FILE: x86_64.config
 
     steps:
       - name: Checkout
