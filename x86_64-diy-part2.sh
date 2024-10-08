@@ -67,7 +67,7 @@ git clone https://github.com/sbwml/feeds_packages_net_curl feeds/packages/net/cu
 # nginx - latest version
 rm -rf feeds/packages/net/nginx
 git clone https://github.com/sbwml/feeds_packages_net_nginx feeds/packages/net/nginx -b quic+zstd
-curl -s https://raw.githubusercontent.com/kn007/patch/master/nginx_dynamic_tls_records.patch > feeds/packages/net/nginx/patches/nginx/105-nginx_dynamic_tls_records.patch
+curl -s https://raw.githubusercontent.com/kn007/patch/e2fcf45e320bb8317042b6796b8f9dd42ffdb25c/nginx_dynamic_tls_records.patch > feeds/packages/net/nginx/patches/nginx/105-nginx_dynamic_tls_records.patch
 sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g;s/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/net/nginx/files/nginx.init
 # sed -i '261a\config NGINX_NJS_MODULE\n\tbool\n\tprompt "Enable NJS module"\n\thelp\n\t\tAdd support for Javascript dynamic module.\n\tdefault n\n' feeds/packages/net/nginx/Config_ssl.in
 # # sed -i '582a\$(eval $(call BuildPackage,nginx-mod-njs))' feeds/packages/net/nginx/Makefile
