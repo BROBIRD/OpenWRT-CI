@@ -50,6 +50,7 @@ echo "luci-app-gost" >> .git/info/sparse-checkout
 echo "gost" >> .git/info/sparse-checkout
 git pull --depth 1 origin master
 git branch --set-upstream-to=origin/master master
+rm -rf package/extra/gost/gost/patches/010-go1-20.patch
 cd -
 
 
