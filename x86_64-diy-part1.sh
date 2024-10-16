@@ -54,4 +54,5 @@ cd -
 
 
 git clone https://github.com/sirpdboy/luci-app-eqosplus package/extra/luci-app-eqosplus
-git clone https://github.com/sirpdboy/luci-app-lucky.git package/extra/lucky
+git clone https://github.com/sirpdboy/luci-app-lucky.git package/extra/luci-app-lucky
+git clone https://github.com/sirpdboy/luci-app-advancedplus.git package/extra/luci-app-advancedplus
