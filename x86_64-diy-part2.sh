@@ -37,7 +37,7 @@ sed -i "s/+luci /+luci-nginx /g" feeds/luci/collections/luci-ssl/Makefile
 sed -i 's#check_status fastpath#check_status fastpath > /dev/null#g' feeds/luci/applications/luci-app-turboacc/luasrc/controller/turboacc.lua
 
 # Optimization level -Ofast
-curl -s https://raw.githubusercontent.com/sbwml/r4s_build_script/master/openwrt/patch/target-modify_for_x86_64.patch | patch -p1
+# curl -s https://raw.githubusercontent.com/sbwml/r4s_build_script/master/openwrt/patch/target-modify_for_x86_64.patch | patch -p1
 
 # openssl -> quictls
 rm -rf package/libs/openssl
