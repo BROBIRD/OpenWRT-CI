@@ -20,6 +20,6 @@ sed -i "s/wget --no-check-certificate/wget -4 --no-check-certificate/" feeds/hel
 rm -rf feeds/luci/themes/luci-theme-argon
 git clone https://github.com/jerrykuku/luci-theme-argon.git package/extra/luci-theme-argon
 git clone https://github.com/jerrykuku/luci-app-argon-config.git package/extra/luci-app-argon-config
-sed -i '110d' feeds/packages/libs/qtbase/Makefile
+# sed -i '110d' feeds/packages/libs/qtbase/Makefile
 # rm -rf target/linux/ramips/patches-5.4/999-fix-hwnat.patch
 # rm -rf target/linux/ramips/patches-5.10/999-fix-hwnat.patch
