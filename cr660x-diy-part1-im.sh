@@ -30,3 +30,4 @@ sed -i '11i\PKG_BUILD_DEPENDS += lua/host luci-base/host' package/extra/luci-app
 
 # sed -i '58,59d' package/utils/bzip2/Makefile
 # sed -i '57a\TARGET_CFLAGS += -fPIC' package/utils/bzip2/Makefile
+sed -i 's/$(FPIC)/-fPIC/g' package/utils/bzip2/Makefile
