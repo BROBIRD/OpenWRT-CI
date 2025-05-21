@@ -27,3 +27,6 @@ sed -i '53i\TARGET_CFLAGS += -fPIC' package/network/utils/fullconenat/Makefile
 # git clone https://github.com/jerrykuku/luci-app-jd-dailybonus.git package/extra/luci-app-jd-dailybonus
 git clone https://github.com/rufengsuixing/luci-app-adguardhome.git package/extra/luci-app-adguardhome
 sed -i '11i\PKG_BUILD_DEPENDS += lua/host luci-base/host' package/extra/luci-app-adguardhome/Makefile
+
+sed -i '58,59d' package/utils/bzip2/Makefile
+sed -i '57a\TARGET_CFLAGS += -fPIC' package/utils/bzip2/Makefile
