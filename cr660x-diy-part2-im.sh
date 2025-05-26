@@ -28,6 +28,6 @@ git clone https://github.com/jerrykuku/luci-app-argon-config.git package/extra/l
 # rm -rf target/linux/ramips/patches-5.10/999-fix-hwnat.patch
 
 sed -i '58,59d' package/utils/bzip2/Makefile
-sed -i '57a\TARGET_CFLAGS += -fPIC' package/utils/bzip2/Makefile
+sed -i '57a\TARGET_CFLAGS += -fPIC -mno-mips16' package/utils/bzip2/Makefile
 sed -i '21a\PKG_BUILD_FLAGS:=no-mips16' package/utils/bzip2/Makefile
 # sed -i 's/$(FPIC)/-fPIC/g' package/utils/bzip2/Makefile
