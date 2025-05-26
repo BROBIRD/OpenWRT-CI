@@ -30,4 +30,6 @@ git clone https://github.com/jerrykuku/luci-app-argon-config.git package/extra/l
 sed -i '58,59d' package/utils/bzip2/Makefile
 sed -i '57a\TARGET_CFLAGS += -fPIC -mno-mips16' package/utils/bzip2/Makefile
 sed -i '21a\PKG_BUILD_FLAGS:=no-mips16' package/utils/bzip2/Makefile
+sed -i '21a\PKG_ASLR_PIE:=0' package/utils/bzip2/Makefile
+sed -i '21a\PKG_LTO:=0' package/utils/bzip2/Makefile
 # sed -i 's/$(FPIC)/-fPIC/g' package/utils/bzip2/Makefile
