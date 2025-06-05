@@ -16,8 +16,6 @@ sed -i '$a\src-git helloworld https://github.com/fw876/helloworld' feeds.conf.de
 # 移除 openwrt feeds 自带的核心包
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
 git clone https://github.com/sbwml/openwrt_helloworld package/helloworld
-sed -i 's/f01eb9a10300ac6f7d5cd9759a9a47980a9c9c8c5868e25b705c63e711706032/da36e99151e2d67e4eee8d6e33e5e65b158cbe43306edece7e30c638c4ac6baa/g' package/helloworld/naiveproxy/Makefile
-sed -i '/PKG_VERSION:=136\.0\.7103\.44/{n;s/PKG_RELEASE:=1/PKG_RELEASE:=2/}' package/helloworld/naiveproxy/Makefile
 
 # 更新 golang 1.23 版本
 rm -rf feeds/packages/lang/golang
