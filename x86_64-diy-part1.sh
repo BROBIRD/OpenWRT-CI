@@ -11,6 +11,7 @@
 # Uncomment a feed source
 sed -i '$a\src-git helloworld https://github.com/fw876/helloworld' feeds.conf.default
 sed -i 's/;openwrt-23.05//g' feeds.conf.default
+sed -i '$a\src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
 # sed -i '$a\src-git passwall https://github.com/xiaorouji/openwrt-passwall' feeds.conf.default
 
 
@@ -54,7 +55,6 @@ cd -
 # rm -rf gost/patches
 # cd -
 
-sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
 
 # git clone https://github.com/sirpdboy/luci-app-eqosplus package/extra/luci-app-eqosplus
 # git clone https://github.com/sirpdboy/luci-app-lucky.git package/extra/luci-app-lucky
