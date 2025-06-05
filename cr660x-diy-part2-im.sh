@@ -35,6 +35,32 @@ sed -i '21a\PKG_LTO:=0' package/utils/bzip2/Makefile
 sed -i '21a\PKG_SHARED_LIBRARY:=0' package/utils/bzip2/Makefile
 sed -i 's/$(FPIC)/-fPIC/g' package/utils/bzip2/Makefile
 
+mkdir -p package/utils/bzip2/patches/
+cat > package/utils/bzip2/patches/010-fix-pic-flags.patch << 'EOF'
+--- a/Makefile-libbz2_so
++++ b/Makefile-libbz2_so
+@@ -22,7 +22,7 @@
+ 
+ SHELL=/bin/sh
+ CC=gcc
+-BIGFILES=-D_FILE_OFFSET_BITS=64
++BIGFILES=-D_FILE_OFFSET_BITS=64 -fPIC
+ CFLAGS=-fpic -fPIC $(BIGFILES) $(CFLAGS)
+ 
+ OBJS= blocksort.o  \
+@@ -35,7 +35,7 @@
+       decompress.o \
+       bzlib.o
+ 
+-all: $(OBJS)
++all: CFLAGS+=-fPIC -fpic $(OBJS)
+ 	$(CC) -shared -Wl,-soname -Wl,libbz2.so.1.0 -o libbz2.so.1.0.8 $(OBJS)
+ 	$(CC) $(CFLAGS) -o bzip2-shared bzip2.c libbz2.so.1.0.8
+ 	rm -f libbz2.so.1.0
+EOF
+
+chmod 644 package/utils/bzip2/patches/010-fix-pic-flags.patch
+
 # openssl -> quictls
 rm -rf package/libs/openssl
 git clone https://github.com/sbwml/package_libs_openssl package/libs/openssl
