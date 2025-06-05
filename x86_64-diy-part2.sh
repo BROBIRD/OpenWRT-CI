@@ -66,8 +66,8 @@ git clone https://github.com/sbwml/feeds_packages_net_curl feeds/packages/net/cu
 
 # nginx - latest version
 rm -rf feeds/packages/net/nginx
-git clone https://github.com/sbwml/feeds_packages_net_nginx feeds/packages/net/nginx -b quic+zstd
-curl -s https://raw.githubusercontent.com/kn007/patch/e2fcf45e320bb8317042b6796b8f9dd42ffdb25c/nginx_dynamic_tls_records.patch > feeds/packages/net/nginx/patches/nginx/105-nginx_dynamic_tls_records.patch
+git clone https://github.com/sbwml/feeds_packages_net_nginx feeds/packages/net/nginx
+# curl -s https://raw.githubusercontent.com/kn007/patch/e2fcf45e320bb8317042b6796b8f9dd42ffdb25c/nginx_dynamic_tls_records.patch > feeds/packages/net/nginx/patches/nginx/105-nginx_dynamic_tls_records.patch
 sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g;s/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/net/nginx/files/nginx.init
 # sed -i '261a\config NGINX_NJS_MODULE\n\tbool\n\tprompt "Enable NJS module"\n\thelp\n\t\tAdd support for Javascript dynamic module.\n\tdefault n\n' feeds/packages/net/nginx/Config_ssl.in
 # # sed -i '582a\$(eval $(call BuildPackage,nginx-mod-njs))' feeds/packages/net/nginx/Makefile
@@ -120,8 +120,5 @@ find ./ | grep Makefile | grep mosdns | xargs rm -f
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 
-# c-ares
-sed -i 's/PKG_VERSION:=1.18.1/PKG_VERSION:=1.27.0/g' feeds/packages/libs/c-ares/Makefile
-sed -i 's/PKG_HASH:=1a7d52a8a84a9fbffb1be9133c0f6e17217d91ea5a6fa61f6b4729cda78ebbcf/PKG_HASH:=0a72be66959955c43e2af2fbd03418e82a2bd5464604ec9a62147e37aceb420b/g' feeds/packages/libs/c-ares/Makefile
-
-sed -i '50a\define Build/InstallDev\n\t$(call Build/InstallDev/cmake,$(1))\n\t$(SED) '\''s,/usr/bin,$$$${prefix}/lib,g'\'' $(1)/usr/lib/pkgconfig/libcares.pc\n\t$(SED) '\''s,/usr/include,$$$${prefix}/include,g'\'' $(1)/usr/lib/pkgconfig/libcares.pc\n\t$(SED) '\''s,/usr/lib,$$$${prefix}/lib,g'\'' $(1)/usr/lib/pkgconfig/libcares.pc\nendef' feeds/packages/libs/c-ares/Makefile
+rm -rf feeds/smpackage/gost/patches
+rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb}
