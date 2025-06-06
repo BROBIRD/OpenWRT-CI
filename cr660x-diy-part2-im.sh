@@ -61,6 +61,58 @@ EOF
 
 chmod 644 package/utils/bzip2/patches/010-fix-pic-flags.patch
 
+
+
+mkdir -p feeds/packages/net/miniupnpd/patches
+
+# 创建补丁文件，直接修改miniupnpd源码的Makefile
+cat > feeds/packages/net/miniupnpd/patches/010-fix-mips-pic-flags.patch << 'EOF'
+--- a/Makefile
++++ b/Makefile
+@@ -27,7 +27,7 @@
+ 
+ CFLAGS ?= -O -Wall -Wextra -Wstrict-prototypes -Wdeclaration-after-statement \
+           -Wno-unused-parameter -Wno-missing-field-initializers \
+-          -D_GNU_SOURCE -fno-strict-aliasing -fno-common \
++          -D_GNU_SOURCE -fno-strict-aliasing -fno-common -fPIC \
+           -DMINIUPNPD_VERSION=\"$(VERSION)\"
+ 
+ #CFLAGS := $(CFLAGS) -ansi
+@@ -35,6 +35,9 @@
+ CFLAGS := $(CFLAGS) -D_BSD_SOURCE -D_DEFAULT_SOURCE
+ CFLAGS := $(CFLAGS) -Wno-array-parameter
+ 
++# Ensure PIC flags are used for MIPS architecture
++LDFLAGS += -fPIC
++
+ # OpenWrt package
+ ifdef OPENWRT_BUILD
+ LDFLAGS += -luuid
+EOF
+
+# 设置补丁文件权限
+chmod 644 feeds/packages/net/miniupnpd/patches/010-fix-mips-pic-flags.patch
+
+# 另外，创建一个补丁确保OpenWRT传递的FPIC标志被正确使用
+cat > feeds/packages/net/miniupnpd/patches/020-ensure-fpic-flags.patch << 'EOF'
+--- a/Makefile
++++ b/Makefile
+@@ -40,6 +40,9 @@
+ 
+ # OpenWrt package
+ ifdef OPENWRT_BUILD
++# Ensure OpenWRT FPIC flags are used
++CFLAGS += $(TARGET_CFLAGS)
++LDFLAGS += $(TARGET_LDFLAGS)
+ LDFLAGS += -luuid
+ endif
+ 
+EOF
+
+# 设置补丁文件权限
+chmod 644 feeds/packages/net/miniupnpd/patches/020-ensure-fpic-flags.patch
+
+
 # # openssl -> quictls
 # rm -rf package/libs/openssl
 # git clone https://github.com/sbwml/package_libs_openssl package/libs/openssl
