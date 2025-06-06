@@ -27,90 +27,90 @@ git clone https://github.com/jerrykuku/luci-app-argon-config.git package/extra/l
 # rm -rf target/linux/ramips/patches-5.4/999-fix-hwnat.patch
 # rm -rf target/linux/ramips/patches-5.10/999-fix-hwnat.patch
 
-sed -i '58,59d' package/utils/bzip2/Makefile
-sed -i '57a\TARGET_CFLAGS += -fPIC -mno-mips16' package/utils/bzip2/Makefile
-sed -i '21a\PKG_BUILD_FLAGS:=no-mips16' package/utils/bzip2/Makefile
-sed -i '21a\PKG_ASLR_PIE:=0' package/utils/bzip2/Makefile
-sed -i '21a\PKG_LTO:=0' package/utils/bzip2/Makefile
-sed -i '21a\PKG_SHARED_LIBRARY:=0' package/utils/bzip2/Makefile
-sed -i 's/$(FPIC)/-fPIC/g' package/utils/bzip2/Makefile
+# sed -i '58,59d' package/utils/bzip2/Makefile
+# sed -i '57a\TARGET_CFLAGS += -fPIC -mno-mips16' package/utils/bzip2/Makefile
+# sed -i '21a\PKG_BUILD_FLAGS:=no-mips16' package/utils/bzip2/Makefile
+# sed -i '21a\PKG_ASLR_PIE:=0' package/utils/bzip2/Makefile
+# sed -i '21a\PKG_LTO:=0' package/utils/bzip2/Makefile
+# sed -i '21a\PKG_SHARED_LIBRARY:=0' package/utils/bzip2/Makefile
+# sed -i 's/$(FPIC)/-fPIC/g' package/utils/bzip2/Makefile
 
-mkdir -p package/utils/bzip2/patches/
-cat > package/utils/bzip2/patches/010-fix-pic-flags.patch << 'EOF'
---- a/Makefile-libbz2_so
-+++ b/Makefile-libbz2_so
-@@ -22,7 +22,7 @@
+# mkdir -p package/utils/bzip2/patches/
+# cat > package/utils/bzip2/patches/010-fix-pic-flags.patch << 'EOF'
+# --- a/Makefile-libbz2_so
+# +++ b/Makefile-libbz2_so
+# @@ -22,7 +22,7 @@
  
- SHELL=/bin/sh
- CC=gcc
--BIGFILES=-D_FILE_OFFSET_BITS=64
-+BIGFILES=-D_FILE_OFFSET_BITS=64 -fPIC
- CFLAGS=-fpic -fPIC $(BIGFILES) $(CFLAGS)
+#  SHELL=/bin/sh
+#  CC=gcc
+# -BIGFILES=-D_FILE_OFFSET_BITS=64
+# +BIGFILES=-D_FILE_OFFSET_BITS=64 -fPIC
+#  CFLAGS=-fpic -fPIC $(BIGFILES) $(CFLAGS)
  
- OBJS= blocksort.o  \
-@@ -35,7 +35,7 @@
-       decompress.o \
-       bzlib.o
+#  OBJS= blocksort.o  \
+# @@ -35,7 +35,7 @@
+#        decompress.o \
+#        bzlib.o
  
--all: $(OBJS)
-+all: CFLAGS+=-fPIC -fpic $(OBJS)
- 	$(CC) -shared -Wl,-soname -Wl,libbz2.so.1.0 -o libbz2.so.1.0.8 $(OBJS)
- 	$(CC) $(CFLAGS) -o bzip2-shared bzip2.c libbz2.so.1.0.8
- 	rm -f libbz2.so.1.0
-EOF
+# -all: $(OBJS)
+# +all: CFLAGS+=-fPIC -fpic $(OBJS)
+#  	$(CC) -shared -Wl,-soname -Wl,libbz2.so.1.0 -o libbz2.so.1.0.8 $(OBJS)
+#  	$(CC) $(CFLAGS) -o bzip2-shared bzip2.c libbz2.so.1.0.8
+#  	rm -f libbz2.so.1.0
+# EOF
 
-chmod 644 package/utils/bzip2/patches/010-fix-pic-flags.patch
+# chmod 644 package/utils/bzip2/patches/010-fix-pic-flags.patch
 
 
 
-mkdir -p feeds/packages/net/miniupnpd/patches
+# mkdir -p feeds/packages/net/miniupnpd/patches
 
-# 创建补丁文件，直接修改miniupnpd源码的Makefile
-cat > feeds/packages/net/miniupnpd/patches/010-fix-mips-pic-flags.patch << 'EOF'
---- a/Makefile
-+++ b/Makefile
-@@ -27,7 +27,7 @@
+# # 创建补丁文件，直接修改miniupnpd源码的Makefile
+# cat > feeds/packages/net/miniupnpd/patches/010-fix-mips-pic-flags.patch << 'EOF'
+# --- a/Makefile
+# +++ b/Makefile
+# @@ -27,7 +27,7 @@
  
- CFLAGS ?= -O -Wall -Wextra -Wstrict-prototypes -Wdeclaration-after-statement \
-           -Wno-unused-parameter -Wno-missing-field-initializers \
--          -D_GNU_SOURCE -fno-strict-aliasing -fno-common \
-+          -D_GNU_SOURCE -fno-strict-aliasing -fno-common -fPIC \
-           -DMINIUPNPD_VERSION=\"$(VERSION)\"
+#  CFLAGS ?= -O -Wall -Wextra -Wstrict-prototypes -Wdeclaration-after-statement \
+#            -Wno-unused-parameter -Wno-missing-field-initializers \
+# -          -D_GNU_SOURCE -fno-strict-aliasing -fno-common \
+# +          -D_GNU_SOURCE -fno-strict-aliasing -fno-common -fPIC \
+#            -DMINIUPNPD_VERSION=\"$(VERSION)\"
  
- #CFLAGS := $(CFLAGS) -ansi
-@@ -35,6 +35,9 @@
- CFLAGS := $(CFLAGS) -D_BSD_SOURCE -D_DEFAULT_SOURCE
- CFLAGS := $(CFLAGS) -Wno-array-parameter
+#  #CFLAGS := $(CFLAGS) -ansi
+# @@ -35,6 +35,9 @@
+#  CFLAGS := $(CFLAGS) -D_BSD_SOURCE -D_DEFAULT_SOURCE
+#  CFLAGS := $(CFLAGS) -Wno-array-parameter
  
-+# Ensure PIC flags are used for MIPS architecture
-+LDFLAGS += -fPIC
-+
- # OpenWrt package
- ifdef OPENWRT_BUILD
- LDFLAGS += -luuid
-EOF
+# +# Ensure PIC flags are used for MIPS architecture
+# +LDFLAGS += -fPIC
+# +
+#  # OpenWrt package
+#  ifdef OPENWRT_BUILD
+#  LDFLAGS += -luuid
+# EOF
 
-# 设置补丁文件权限
-chmod 644 feeds/packages/net/miniupnpd/patches/010-fix-mips-pic-flags.patch
+# # 设置补丁文件权限
+# chmod 644 feeds/packages/net/miniupnpd/patches/010-fix-mips-pic-flags.patch
 
-# 另外，创建一个补丁确保OpenWRT传递的FPIC标志被正确使用
-cat > feeds/packages/net/miniupnpd/patches/020-ensure-fpic-flags.patch << 'EOF'
---- a/Makefile
-+++ b/Makefile
-@@ -40,6 +40,9 @@
+# # 另外，创建一个补丁确保OpenWRT传递的FPIC标志被正确使用
+# cat > feeds/packages/net/miniupnpd/patches/020-ensure-fpic-flags.patch << 'EOF'
+# --- a/Makefile
+# +++ b/Makefile
+# @@ -40,6 +40,9 @@
  
- # OpenWrt package
- ifdef OPENWRT_BUILD
-+# Ensure OpenWRT FPIC flags are used
-+CFLAGS += $(TARGET_CFLAGS)
-+LDFLAGS += $(TARGET_LDFLAGS)
- LDFLAGS += -luuid
- endif
+#  # OpenWrt package
+#  ifdef OPENWRT_BUILD
+# +# Ensure OpenWRT FPIC flags are used
+# +CFLAGS += $(TARGET_CFLAGS)
+# +LDFLAGS += $(TARGET_LDFLAGS)
+#  LDFLAGS += -luuid
+#  endif
  
-EOF
+# EOF
 
-# 设置补丁文件权限
-chmod 644 feeds/packages/net/miniupnpd/patches/020-ensure-fpic-flags.patch
+# # 设置补丁文件权限
+# chmod 644 feeds/packages/net/miniupnpd/patches/020-ensure-fpic-flags.patch
 
 
 # # openssl -> quictls
