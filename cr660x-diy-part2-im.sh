@@ -27,6 +27,10 @@ git clone https://github.com/jerrykuku/luci-app-argon-config.git package/extra/l
 # rm -rf target/linux/ramips/patches-5.4/999-fix-hwnat.patch
 # rm -rf target/linux/ramips/patches-5.10/999-fix-hwnat.patch
 
+pushd feeds/packages/net/trojan-plus/patches
+    curl -sO https://github.com/user-attachments/files/18404967/deprecated_functions.patch
+popd
+
 # sed -i '58,59d' package/utils/bzip2/Makefile
 # sed -i '57a\TARGET_CFLAGS += -fPIC -mno-mips16' package/utils/bzip2/Makefile
 # sed -i '21a\PKG_BUILD_FLAGS:=no-mips16' package/utils/bzip2/Makefile
@@ -117,22 +121,22 @@ git clone https://github.com/jerrykuku/luci-app-argon-config.git package/extra/l
 # rm -rf package/libs/openssl
 # git clone https://github.com/sbwml/package_libs_openssl package/libs/openssl
 
-# # openssl hwrng
-# sed -i "/-openwrt/iOPENSSL_OPTIONS += enable-ktls '-DDEVRANDOM=\"\\\\\"/dev/urandom\\\\\"\"\'\n" package/libs/openssl/Makefile
+# openssl hwrng
+sed -i "/-openwrt/iOPENSSL_OPTIONS += enable-ktls '-DDEVRANDOM=\"\\\\\"/dev/urandom\\\\\"\"\'\n" package/libs/openssl/Makefile
 
-# # openssl -Ofast
-# sed -i "s/-O3/-Ofast/g" package/libs/openssl/Makefile
+# openssl -Ofast
+sed -i "s/-O3/-Ofast/g" package/libs/openssl/Makefile
 
 # # openssl: make compatible with v1.1 pkg 
 # sed -i '/libcrypto.so/a\	$(LN) libcrypto.so.3 $(1)/usr/lib/libcrypto.so.1.1' package/libs/openssl/Makefile
 # sed -i '/libssl.so/a\	$(LN) libssl.so.3 $(1)/usr/lib/libssl.so.1.1' package/libs/openssl/Makefile
 
-# # nghttp3
-# git clone https://github.com/sbwml/package_libs_nghttp3 package/libs/nghttp3
+# nghttp3
+git clone https://github.com/sbwml/package_libs_nghttp3 package/libs/nghttp3
 
-# # ngtcp2
-# git clone https://github.com/sbwml/package_libs_ngtcp2 package/libs/ngtcp2
+# ngtcp2
+git clone https://github.com/sbwml/package_libs_ngtcp2 package/libs/ngtcp2
 
-# # curl - http3/quic
-# rm -rf feeds/packages/net/curl
-# git clone https://github.com/sbwml/feeds_packages_net_curl feeds/packages/net/curl
+# curl - http3/quic
+rm -rf feeds/packages/net/curl
+git clone https://github.com/sbwml/feeds_packages_net_curl feeds/packages/net/curl
