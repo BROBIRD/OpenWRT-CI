@@ -28,7 +28,7 @@ git clone https://github.com/jerrykuku/luci-app-argon-config.git package/extra/l
 # rm -rf target/linux/ramips/patches-5.10/999-fix-hwnat.patch
 
 pushd feeds/packages/net/trojan-plus/patches
-    curl -sO https://github.com/user-attachments/files/18404967/deprecated_functions.patch
+    curl -s https://github.com/user-attachments/files/18404967/deprecated_functions.patch -o 010-fix-boost-deprecated_functions.patch
 popd
 
 # sed -i '58,59d' package/utils/bzip2/Makefile
