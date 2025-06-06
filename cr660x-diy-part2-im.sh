@@ -27,6 +27,7 @@ git clone https://github.com/jerrykuku/luci-app-argon-config.git package/extra/l
 # rm -rf target/linux/ramips/patches-5.4/999-fix-hwnat.patch
 # rm -rf target/linux/ramips/patches-5.10/999-fix-hwnat.patch
 
+mkdir -p package/helloworld/trojan-plus/patches
 pushd package/helloworld/trojan-plus/patches
     curl -sO https://gist.github.com/BROBIRD/7644585651f249abe124d81a540fe808/raw/cd0be3bdaae258f9934f2d709ed6913540cf4211/010-fix-boost-deprecated_functions.patch
 popd
