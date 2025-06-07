@@ -29,7 +29,7 @@ git clone https://github.com/jerrykuku/luci-app-argon-config.git package/extra/l
 
 mkdir -p package/helloworld/trojan-plus/patches
 pushd package/helloworld/trojan-plus/patches
-    curl -sO https://gist.github.com/BROBIRD/7644585651f249abe124d81a540fe808/raw/cd0be3bdaae258f9934f2d709ed6913540cf4211/010-fix-boost-deprecated_functions.patch
+    curl -sO https://gist.github.com/BROBIRD/7644585651f249abe124d81a540fe808/raw/8832c86d3bf4ca4ba9cefa586db8ffeb009dafc5/010-fix-boost-deprecated_functions.patch
 popd
 
 # sed -i '58,59d' package/utils/bzip2/Makefile
