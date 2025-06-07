@@ -10,11 +10,19 @@ jobs:
   fetch_cache:
     name: fetch cache
     runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        include:
+          - repo: https://github.com/coolsnowwolf/lede
+            conf: x86_64.config
+          - repo: https://github.com/immortalwrt/immortalwrt
+            conf: cr660x-im.config
+
     env:
-      REPO_URL: https://github.com/coolsnowwolf/lede
+      REPO_URL: ${{ matrix.repo }}
       REPO_BRANCH: master
       TZ: Asia/Shanghai
-      CONFIG_FILE: x86_64.config
+      CONFIG_FILE: ${{ matrix.conf }}
 
     steps:
       - name: Checkout
