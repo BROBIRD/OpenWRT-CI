@@ -183,3 +183,5 @@ rm -rf feeds/smpackage/gost/patches
 rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb}
 
 sed -i 's#+$(NINJA) -C $(HOST_BUILD_DIR)/out#ninja -C $(HOST_BUILD_DIR)/out#g' feeds/helloworld/gn/Makefile
+
+sed -i '2a\PKG_NAME:=luci-app-ssr-plus' feeds/helloworld/luci-app-ssr-plus/Makefile
