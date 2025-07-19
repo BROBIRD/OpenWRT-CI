@@ -15,12 +15,14 @@ jobs:
         include:
           - repo: https://github.com/coolsnowwolf/lede
             conf: x86_64.config
-          - repo: https://github.com/immortalwrt/immortalwrt
-            conf: cr660x-im.config
+            p1p2: x86_64
+          # - repo: https://github.com/immortalwrt/immortalwrt
+          #   conf: cr660x-im.config
 
     env:
       REPO_URL: ${{ matrix.repo }}
       REPO_BRANCH: master
+      FEEDS_CONF: feeds.conf.default
       TZ: Asia/Shanghai
       CONFIG_FILE: ${{ matrix.conf }}
 
@@ -69,9 +71,9 @@ jobs:
       - name: Load custom feeds
         run: |
           [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
-          chmod +x $DIY_P1_SH
+          chmod +x ${{ matrix.p1p2 }}-diy-part1.sh
           cd openwrt
-          $GITHUB_WORKSPACE/$DIY_P1_SH
+          $GITHUB_WORKSPACE/${{ matrix.p1p2 }}-diy-part1.sh
           df -hT
 
       - name: Update feeds
@@ -84,9 +86,9 @@ jobs:
         run: |
           [ -e files ] && mv files openwrt/files
           [ -e $CONFIG_FILE ] && cp $CONFIG_FILE openwrt/.config
-          chmod +x $DIY_P2_SH
+          chmod +x ${{ matrix.p1p2 }}-diy-part2.sh
           cd openwrt
-          $GITHUB_WORKSPACE/$DIY_P2_SH
+          $GITHUB_WORKSPACE/${{ matrix.p1p2 }}-diy-part2.sh
 
       - name: Cache
         uses: HiGarfield/cachewrtbuild@main
