@@ -10,7 +10,7 @@
 
 # Uncomment a feed source
 sed -i '$a\src-git helloworld https://github.com/fw876/helloworld' feeds.conf.default
-sed -i 's/;openwrt-23.05//g' feeds.conf.default
+sed -i 's/;openwrt-24.10//g' feeds.conf.default
 sed -i '$a\src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
 # rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb,tcping}
 # sed -i '$a\src-git passwall https://github.com/xiaorouji/openwrt-passwall' feeds.conf.default
