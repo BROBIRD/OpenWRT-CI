@@ -27,6 +27,8 @@ sed -i '$a\src-git smpackage https://github.com/kenzok8/small-package' feeds.con
 
 # git clone https://github.com/jerrykuku/luci-app-jd-dailybonus.git package/extra/luci-app-jd-dailybonus
 
+sed -i 's/+luci-compat/+luci-base/g' package/lean/default-settings/Makefile
+
 mkdir package/extra/luci-app-openclash
 cd package/extra/luci-app-openclash
 git init
