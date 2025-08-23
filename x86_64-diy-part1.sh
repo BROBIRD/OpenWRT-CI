@@ -29,7 +29,7 @@ sed -i '$a\src-git smpackage https://github.com/kenzok8/small-package' feeds.con
 
 sed -i 's/+luci-compat/+luci-base/g' package/lean/default-settings/Makefile
 
-mkdir package/extra/luci-app-openclash
+mkdir -p package/extra/luci-app-openclash
 cd package/extra/luci-app-openclash
 git init
 git remote add -f origin https://github.com/vernesong/OpenClash.git
