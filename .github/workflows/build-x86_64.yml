@@ -56,27 +56,17 @@ jobs:
         echo "--------------------------硬盘信息--------------------------"
         echo "硬盘数量: $(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT
 
-    # - name: Maximize build space
-    #   uses: easimon/maximize-build-space@master
-    #   with:
-    #     root-reserve-mb: 2048
-    #     swap-size-mb: 8192
-    #     remove-dotnet: 'true'
-    #     remove-android: 'true'
-    #     remove-haskell: 'true'
-    #     remove-codeql: 'true'
-    #     remove-docker-images: 'true'
-
-    - name: Free disk space
-      uses: coder-xiaomo/free-disk-space@main
+    - name: Maximize build space
+      uses: easimon/maximize-build-space@master
       with:
-        tool-cache: false
-        android: true
-        dotnet: true
-        haskell: true
-        large-packages: true
-        docker-images: true
-        swap-storage: true
+        root-reserve-mb: 2048
+        swap-size-mb: 8192
+        remove-dotnet: 'true'
+        remove-android: 'true'
+        remove-haskell: 'true'
+        remove-codeql: 'true'
+        remove-docker-images: 'true'
+
 
     - name: Checkout
       uses: actions/checkout@main
