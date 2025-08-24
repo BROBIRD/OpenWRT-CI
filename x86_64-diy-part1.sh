@@ -10,8 +10,12 @@
 
 # Uncomment a feed source
 # sed -i '$a\src-git helloworld https://github.com/fw876/helloworld' feeds.conf.default
-sed -i 's/;openwrt-24.10//g' feeds.conf.default
-sed -i 's/;openwrt-23.05//g' feeds.conf.default
+
+# 启用旧版Luci
+sed -i 's/^#\(.*luci\)/\1/' feeds.conf.default
+sed -i '/src-git.*openwrt-23/s/^/#/' feeds.conf.default
+sed -i '/src-git.*openwrt-24/s/^/#/' feeds.conf.default
+
 sed -i '$a\src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
 # rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb,tcping}
 # sed -i '$a\src-git passwall https://github.com/xiaorouji/openwrt-passwall' feeds.conf.default
@@ -30,15 +34,18 @@ sed -i '$a\src-git smpackage https://github.com/kenzok8/small-package' feeds.con
 
 sed -i 's/+luci-compat/+luci-base/g' package/lean/default-settings/Makefile
 
-mkdir -p package/extra/luci-app-openclash
-cd package/extra/luci-app-openclash
-git init
-git remote add -f origin https://github.com/vernesong/OpenClash.git
-git config core.sparsecheckout true
-echo "luci-app-openclash" >> .git/info/sparse-checkout
-git pull --depth 1 origin master
-git branch --set-upstream-to=origin/master master
-cd -
+# mkdir -p package/extra/luci-app-openclash
+# cd package/extra/luci-app-openclash
+# git init
+# git remote add -f origin https://github.com/vernesong/OpenClash.git
+# git config core.sparsecheckout true
+# echo "luci-app-openclash" >> .git/info/sparse-checkout
+# git pull --depth 1 origin master
+# git branch --set-upstream-to=origin/master master
+# cd -
+
+git clone --depth=1 -b master https://github.com/vernesong/OpenClash package/extra/luci-app-openclash
+
 # integration clash core 实现编译更新后直接可用，不用手动下载clash内核
 # curl -sL -m 30 --retry 2 https://raw.githubusercontent.com/vernesong/OpenClash/core/dev/meta/clash-linux-amd64.tar.gz -o /tmp/clash.tar.gz
 # tar zxvf /tmp/clash.tar.gz -C /tmp >/dev/null 2>&1
