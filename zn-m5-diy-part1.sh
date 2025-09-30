@@ -20,6 +20,12 @@ sed -i 's/+luci-compat/+luci-base/g' package/lean/default-settings/Makefile
 sed -i '$a\src-git helloworld https://github.com/fw876/helloworld' feeds.conf.default
 # sed -i '$a\src-git passwall https://github.com/xiaorouji/openwrt-passwall' feeds.conf.default
 
+# 更新 golang 1.24 版本
+rm -rf feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
+
+sed -i '53i\TARGET_CFLAGS += -fPIC' package/network/utils/fullconenat/Makefile
+
 # Add a feed source
 #sed -i '$a src-git lienol https://github.com/Lienol/openwrt-package' feeds.conf.default
 # git clone https://github.com/jerrykuku/luci-app-jd-dailybonus.git package/extra/luci-app-jd-dailybonus
