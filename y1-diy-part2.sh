@@ -25,5 +25,5 @@ echo 'exit 0' >> package/lean/default-settings/files/zzz-default-settings
 # Update Luci theme argon  
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/luci/applications/luci-app-argon-config
-git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/extra/luci-theme-argon
-git clone -b 18.06 https://github.com/jerrykuku/luci-app-argon-config.git package/extra/luci-app-argon-config
+git clone -b 18.06 --single-branch --depth=1 https://github.com/jerrykuku/luci-theme-argon.git package/extra/luci-theme-argon
+git clone -b 18.06 --single-branch --depth=1 https://github.com/jerrykuku/luci-app-argon-config.git package/extra/luci-app-argon-config

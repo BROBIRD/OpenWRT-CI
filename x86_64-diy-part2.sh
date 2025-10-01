@@ -24,8 +24,8 @@ echo '/etc/openclash/' >> package/base-files/files/etc/sysupgrade.conf
 # Update Luci theme argon  
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/luci/applications/luci-app-argon-config
-git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/extra/luci-theme-argon
-git clone -b 18.06 https://github.com/jerrykuku/luci-app-argon-config.git package/extra/luci-app-argon-config
+git clone -b 18.06 --single-branch --depth=1 https://github.com/jerrykuku/luci-theme-argon.git package/extra/luci-theme-argon
+git clone -b 18.06 --single-branch --depth=1 https://github.com/jerrykuku/luci-app-argon-config.git package/extra/luci-app-argon-config
 
 # Use nginx instead of uhttpd
 sed -i 's/+uhttpd /+luci-nginx /g' feeds/luci/collections/luci/Makefile
@@ -104,18 +104,19 @@ sed -i "s/-O3/-Ofast/g" package/libs/openssl/Makefile
 # sed -i '/libssl.so/a\	$(LN) libssl.so.3 $(1)/usr/lib/libssl.so.1.1' package/libs/openssl/Makefile
 
 # nghttp3
-git clone https://github.com/sbwml/package_libs_nghttp3 package/libs/nghttp3
+./gh-down.sh https://github.com/immortalwrt/packages/tree/master/libs/nghttp3 package/libs/nghttp3
+# git clone https://github.com/sbwml/package_libs_nghttp3 package/libs/nghttp3
 
 # ngtcp2
-git clone https://github.com/sbwml/package_libs_ngtcp2 package/libs/ngtcp2
+git clone --single-branch --depth=1 https://github.com/sbwml/package_libs_ngtcp2 package/libs/ngtcp2
 
 # curl - http3/quic
 rm -rf feeds/packages/net/curl
-git clone https://github.com/sbwml/feeds_packages_net_curl feeds/packages/net/curl
+git clone --single-branch --depth=1 https://github.com/sbwml/feeds_packages_net_curl feeds/packages/net/curl
 
 # nginx - latest version
 rm -rf feeds/packages/net/nginx
-git clone https://github.com/sbwml/feeds_packages_net_nginx -b quic+zstd feeds/packages/net/nginx
+git clone --single-branch --depth=1 https://github.com/sbwml/feeds_packages_net_nginx -b quic+zstd feeds/packages/net/nginx
 # curl -s https://raw.githubusercontent.com/kn007/patch/e2fcf45e320bb8317042b6796b8f9dd42ffdb25c/nginx_dynamic_tls_records.patch > feeds/packages/net/nginx/patches/nginx/105-nginx_dynamic_tls_records.patch
 sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g;s/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/net/nginx/files/nginx.init
 sed -i 's/1.26.2/1.28.0/g' feeds/packages/net/nginx/Makefile
@@ -172,8 +173,8 @@ popd
 find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
 find ./ | grep Makefile | grep mosdns | xargs rm -f
 
-git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
-git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
+git clone --single-branch --depth=1 https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
+git clone --single-branch --depth=1 https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 
 rm -rf feeds/smpackage/gost/patches
 rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb,tcping}

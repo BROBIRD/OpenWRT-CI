@@ -44,7 +44,7 @@ sed -i 's/+luci-compat/+luci-base/g' package/lean/default-settings/Makefile
 # git branch --set-upstream-to=origin/master master
 # cd -
 
-git clone --depth=1 -b master https://github.com/vernesong/OpenClash package/extra/luci-app-openclash
+git clone --single-branch --depth=1 -b master https://github.com/vernesong/OpenClash package/extra/luci-app-openclash
 
 # integration clash core 实现编译更新后直接可用，不用手动下载clash内核
 # curl -sL -m 30 --retry 2 https://raw.githubusercontent.com/vernesong/OpenClash/core/dev/meta/clash-linux-amd64.tar.gz -o /tmp/clash.tar.gz
@@ -69,4 +69,4 @@ git clone --depth=1 -b master https://github.com/vernesong/OpenClash package/ext
 
 # git clone https://github.com/sirpdboy/luci-app-eqosplus package/extra/luci-app-eqosplus
 # git clone https://github.com/sirpdboy/luci-app-lucky.git package/extra/luci-app-lucky
-git clone https://github.com/sirpdboy/luci-app-advancedplus.git package/extra/luci-app-advancedplus
+git clone --single-branch --depth=1 https://github.com/sirpdboy/luci-app-advancedplus.git package/extra/luci-app-advancedplus

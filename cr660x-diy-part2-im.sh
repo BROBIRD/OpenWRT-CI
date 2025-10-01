@@ -21,8 +21,8 @@ sed -i "s/wget -q/wget -4 -q/" package/helloworld/luci-app-ssr-plus/root/usr/sha
 sed -i "s/wget --no-check-certificate/wget -4 --no-check-certificate/" package/helloworld/luci-app-ssr-plus/root/usr/share/shadowsocksr/update.lua
 
 rm -rf feeds/luci/themes/luci-theme-argon
-git clone https://github.com/jerrykuku/luci-theme-argon.git package/extra/luci-theme-argon
-git clone https://github.com/jerrykuku/luci-app-argon-config.git package/extra/luci-app-argon-config
+git clone --single-branch --depth=1 https://github.com/jerrykuku/luci-theme-argon.git package/extra/luci-theme-argon
+git clone --single-branch --depth=1 https://github.com/jerrykuku/luci-app-argon-config.git package/extra/luci-app-argon-config
 # sed -i '110d' feeds/packages/libs/qtbase/Makefile
 # rm -rf target/linux/ramips/patches-5.4/999-fix-hwnat.patch
 # rm -rf target/linux/ramips/patches-5.10/999-fix-hwnat.patch
@@ -134,16 +134,16 @@ sed -i "s/-O3/-Ofast/g" package/libs/openssl/Makefile
 # sed -i '/libssl.so/a\	$(LN) libssl.so.3 $(1)/usr/lib/libssl.so.1.1' package/libs/openssl/Makefile
 
 # nghttp3
-rm -rf feeds/packages/libs/nghttp3
-git clone https://github.com/sbwml/package_libs_nghttp3 package/libs/nghttp3
+# rm -rf feeds/packages/libs/nghttp3
+# git clone https://github.com/sbwml/package_libs_nghttp3 package/libs/nghttp3
 
 # ngtcp2
 rm -rf feeds/packages/libs/ngtcp2
-git clone https://github.com/sbwml/package_libs_ngtcp2 package/libs/ngtcp2
+git clone --single-branch --depth=1 https://github.com/sbwml/package_libs_ngtcp2 package/libs/ngtcp2
 
 # curl - http3/quic
 rm -rf feeds/packages/net/curl
-git clone https://github.com/sbwml/feeds_packages_net_curl feeds/packages/net/curl
+git clone --single-branch --depth=1 https://github.com/sbwml/feeds_packages_net_curl feeds/packages/net/curl
 
 # BBRv3 - linux-6.6
 pushd target/linux/generic/backport-6.6

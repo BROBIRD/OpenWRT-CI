@@ -24,8 +24,8 @@ sed -i "s/wget -q/wget -4 -q/" feeds/helloworld/luci-app-ssr-plus/root/usr/share
 sed -i "s/wget --no-check-certificate/wget -4 --no-check-certificate/" feeds/helloworld/luci-app-ssr-plus/root/usr/share/shadowsocksr/update.lua
 
 rm -rf feeds/luci/themes/luci-theme-argon
-git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/extra/luci-theme-argon
-git clone -b 18.06 https://github.com/jerrykuku/luci-app-argon-config.git package/extra/luci-app-argon-config
+git clone -b 18.06 --single-branch --depth=1 https://github.com/jerrykuku/luci-theme-argon.git package/extra/luci-theme-argon
+git clone -b 18.06 --single-branch --depth=1 https://github.com/jerrykuku/luci-app-argon-config.git package/extra/luci-app-argon-config
 sed -i '110d' feeds/packages/libs/qtbase/Makefile
 # rm -rf target/linux/ramips/patches-5.4/999-fix-hwnat.patch
 # rm -rf target/linux/ramips/patches-5.10/999-fix-hwnat.patch
