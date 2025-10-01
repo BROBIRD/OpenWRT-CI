@@ -106,6 +106,7 @@ jobs:
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         chmod +x $DIY_P1_SH
+        chmod +x gh-down.sh
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
