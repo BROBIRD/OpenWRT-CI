@@ -98,7 +98,7 @@ download_dir() {
         if [ "$type" == "file" ]; then
             echo "  Downloading file: $full_local_path"
             curl -s -L -o "$full_local_path" "$download_url"
-        elif [ "$type" == "dir" ];
+        elif [ "$type" == "dir" ]; then
             download_dir "$next_api_url" "$full_local_path"
         fi
     done
