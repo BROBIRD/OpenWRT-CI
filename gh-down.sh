@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # 脚本功能: 使用 GitHub API 递归下载仓库中的单个文件夹
+# 版本: 2.0
+# 更新: 允许用户通过命令行参数指定目标目录
 # 依赖: curl, jq
 
 set -e # 如果任何命令失败，则立即退出
@@ -15,8 +17,19 @@ GITHUB_TOKEN=""
 
 # 显示用法
 usage() {
-    echo "Usage: $0 <GitHub Folder URL>"
-    echo "Example: $0 https://github.com/facebook/react/tree/main/packages/react"
+    echo "Usage: $0 <GitHub Folder URL> [Destination Directory]"
+    echo
+    echo "Arguments:"
+    echo "  <GitHub Folder URL>      The full URL of the GitHub folder to download."
+    echo "  [Destination Directory]  (Optional) The local directory to download files into."
+    echo "                           If not provided, a directory with the same name as the"
+    echo "                           GitHub folder will be created in the current location."
+    echo
+    echo "Example 1 (auto-creates 'react' dir):"
+    echo "  $0 https://github.com/facebook/react/tree/main/packages/react"
+    echo
+    echo "Example 2 (downloads to 'my-react-code' dir):"
+    echo "  $0 https://github.com/facebook/react/tree/main/packages/react my-react-code"
     exit 1
 }
 
@@ -105,9 +118,16 @@ FOLDER_PATH=${FOLDER_PATH%/}
 INITIAL_API_URL="https://api.github.com/repos/$OWNER/$REPO/contents/$FOLDER_PATH?ref=$BRANCH"
 
 # 3. 设置本地目标文件夹名称
-DEST_FOLDER_NAME=$(basename "$FOLDER_PATH")
-if [ -z "$DEST_FOLDER_NAME" ] || [ "$DEST_FOLDER_NAME" == "." ]; then
-    DEST_FOLDER_NAME=$REPO # 如果是根目录，则使用仓库名
+#   - 如果提供了第二个参数 ($2)，则使用它作为目标目录。
+#   - 否则，自动根据URL中的文件夹名创建目录。
+DEST_FOLDER=""
+if [ -n "$2" ]; then
+    DEST_FOLDER="$2"
+else
+    DEST_FOLDER=$(basename "$FOLDER_PATH")
+    if [ -z "$DEST_FOLDER" ] || [ "$DEST_FOLDER" == "." ]; then
+        DEST_FOLDER=$REPO # 如果是根目录，则使用仓库名
+    fi
 fi
 
 echo "--- Download Details ---"
@@ -115,10 +135,11 @@ echo "Owner: $OWNER"
 echo "Repo: $REPO"
 echo "Branch: $BRANCH"
 echo "Folder Path: $FOLDER_PATH"
-echo "Destination: ./$DEST_FOLDER_NAME"
+echo "Destination: $DEST_FOLDER"
 echo "------------------------"
 
 # 4. 开始下载
-download_dir "$INITIAL_API_URL" "$DEST_FOLDER_NAME"
+download_dir "$INITIAL_API_URL" "$DEST_FOLDER"
 
-echo "✅ Download complete!"
+echo
+echo "✅ Download complete! Files are in '$DEST_FOLDER'"
