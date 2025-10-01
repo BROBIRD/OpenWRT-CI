@@ -25,7 +25,7 @@ git clone --single-branch --depth=1 https://github.com/jerrykuku/luci-app-argon-
 # rm -rf target/linux/ramips/patches-5.10/999-fix-hwnat.patch
 
 rm -rf package/libs/openssl
-./gh-down.sh https://github.com/immortalwrt/immortalwrt/tree/master/package/libs/openssl package/libs/openssl
+../gh-down.sh https://github.com/immortalwrt/immortalwrt/tree/master/package/libs/openssl package/libs/openssl
 # openssl hwrng
 sed -i "/-openwrt/iOPENSSL_OPTIONS += enable-ktls '-DDEVRANDOM=\"\\\\\"/dev/urandom\\\\\"\"\'\n" package/libs/openssl/Makefile
 

@@ -104,7 +104,7 @@ sed -i "s/-O3/-Ofast/g" package/libs/openssl/Makefile
 # sed -i '/libssl.so/a\	$(LN) libssl.so.3 $(1)/usr/lib/libssl.so.1.1' package/libs/openssl/Makefile
 
 # nghttp3
-./gh-down.sh https://github.com/immortalwrt/packages/tree/master/libs/nghttp3 package/libs/nghttp3
+../gh-down.sh https://github.com/immortalwrt/packages/tree/master/libs/nghttp3 package/libs/nghttp3
 # git clone https://github.com/sbwml/package_libs_nghttp3 package/libs/nghttp3
 
 # ngtcp2
