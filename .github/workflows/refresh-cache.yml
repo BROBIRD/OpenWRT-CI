@@ -14,15 +14,17 @@ jobs:
       matrix:
         include:
           - repo: https://github.com/coolsnowwolf/lede
+            branch: master
             conf: x86_64.config
             p1p2: x86_64
           - repo: https://github.com/padavanonly/immortalwrt-mt798x-6.6
+            branch: openwrt-24.10-6.6
             conf: zn-m5.config
             p1p2: zn-m5
 
     env:
       REPO_URL: ${{ matrix.repo }}
-      REPO_BRANCH: master
+      REPO_BRANCH: ${{ matrix.branch }}
       FEEDS_CONF: feeds.conf.default
       TZ: Asia/Shanghai
       CONFIG_FILE: ${{ matrix.conf }}
