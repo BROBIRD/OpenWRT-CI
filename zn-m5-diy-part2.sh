@@ -24,13 +24,13 @@ git clone --single-branch --depth=1 https://github.com/jerrykuku/luci-app-argon-
 # rm -rf target/linux/ramips/patches-5.4/999-fix-hwnat.patch
 # rm -rf target/linux/ramips/patches-5.10/999-fix-hwnat.patch
 
-rm -rf package/libs/openssl
-../gh-down.sh https://github.com/immortalwrt/immortalwrt/tree/master/package/libs/openssl package/libs/openssl
-# openssl hwrng
-sed -i "/-openwrt/iOPENSSL_OPTIONS += enable-ktls '-DDEVRANDOM=\"\\\\\"/dev/urandom\\\\\"\"\'\n" package/libs/openssl/Makefile
+# rm -rf package/libs/openssl
+# ../gh-down.sh https://github.com/immortalwrt/immortalwrt/tree/master/package/libs/openssl package/libs/openssl
+# # openssl hwrng
+# sed -i "/-openwrt/iOPENSSL_OPTIONS += enable-ktls '-DDEVRANDOM=\"\\\\\"/dev/urandom\\\\\"\"\'\n" package/libs/openssl/Makefile
 
-# openssl -Os
-sed -i "s/-O3/-Os/g" package/libs/openssl/Makefile
+# # openssl -Os
+# sed -i "s/-O3/-Os/g" package/libs/openssl/Makefile
 
 # # openssl: make compatible with v1.1 pkg 
 # sed -i '/libcrypto.so/a\	$(LN) libcrypto.so.3 $(1)/usr/lib/libcrypto.so.1.1' package/libs/openssl/Makefile
@@ -40,13 +40,13 @@ sed -i "s/-O3/-Os/g" package/libs/openssl/Makefile
 # rm -rf feeds/packages/libs/nghttp3
 # git clone https://github.com/sbwml/package_libs_nghttp3 package/libs/nghttp3
 
-# ngtcp2
-rm -rf feeds/packages/libs/ngtcp2
-git clone --single-branch --depth=1 https://github.com/sbwml/package_libs_ngtcp2 package/libs/ngtcp2
+# # ngtcp2
+# rm -rf feeds/packages/libs/ngtcp2
+# git clone --single-branch --depth=1 https://github.com/sbwml/package_libs_ngtcp2 package/libs/ngtcp2
 
 # curl - http3/quic
-rm -rf feeds/packages/net/curl
-git clone --single-branch --depth=1 https://github.com/sbwml/feeds_packages_net_curl feeds/packages/net/curl
+# rm -rf feeds/packages/net/curl
+# git clone --single-branch --depth=1 https://github.com/sbwml/feeds_packages_net_curl feeds/packages/net/curl
 
 # # BBRv3 - linux-6.6
 # pushd target/linux/generic/backport-6.6
