@@ -9,8 +9,8 @@
 #============================================================
 
 # Modify default IP
-sed -i 's/192.168.1/10.0.2/g' package/base-files/files/bin/config_generate
-sed -i '/--dport 53 -j REDIRECT --to-ports 53/d' package/lean/default-settings/files/zzz-default-settings
+sed -i 's/192.168.6/10.0.2/g' package/base-files/files/bin/config_generate
+# sed -i '/--dport 53 -j REDIRECT --to-ports 53/d' package/lean/default-settings/files/zzz-default-settings
 sed -i -r '/elseif szType == ("sip008"|'\''vmess'\'') then/i\\t\tresult.fast_open = "1"' feeds/helloworld/luci-app-ssr-plus/root/usr/share/shadowsocksr/subscribe.lua
 
 #只用ipv4地址订阅及更新
@@ -48,24 +48,24 @@ git clone --single-branch --depth=1 https://github.com/sbwml/package_libs_ngtcp2
 rm -rf feeds/packages/net/curl
 git clone --single-branch --depth=1 https://github.com/sbwml/feeds_packages_net_curl feeds/packages/net/curl
 
-# BBRv3 - linux-6.6
-pushd target/linux/generic/backport-6.6
-	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0001-net-tcp_bbr-broaden-app-limited-rate-sample-detectio.patch
-	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0002-net-tcp_bbr-v2-shrink-delivered_mstamp-first_tx_msta.patch
-	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0003-net-tcp_bbr-v2-snapshot-packets-in-flight-at-transmi.patch
-	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0004-net-tcp_bbr-v2-count-packets-lost-over-TCP-rate-samp.patch
-	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0005-net-tcp_bbr-v2-export-FLAG_ECE-in-rate_sample.is_ece.patch
-	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0006-net-tcp_bbr-v2-introduce-ca_ops-skb_marked_lost-CC-m.patch
-	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0007-net-tcp_bbr-v2-adjust-skb-tx.in_flight-upon-merge-in.patch
-	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0008-net-tcp_bbr-v2-adjust-skb-tx.in_flight-upon-split-in.patch
-	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0009-net-tcp-add-new-ca-opts-flag-TCP_CONG_WANTS_CE_EVENT.patch
-	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0010-net-tcp-re-generalize-TSO-sizing-in-TCP-CC-module-AP.patch
-	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0011-net-tcp-add-fast_ack_mode-1-skip-rwin-check-in-tcp_f.patch
-	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0012-net-tcp_bbr-v2-record-app-limited-status-of-TLP-repa.patch
-	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0013-net-tcp_bbr-v2-inform-CC-module-of-losses-repaired-b.patch
-	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0014-net-tcp_bbr-v2-introduce-is_acking_tlp_retrans_seq-i.patch
-	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0015-tcp-introduce-per-route-feature-RTAX_FEATURE_ECN_LOW.patch
-	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0016-net-tcp_bbr-v3-update-TCP-bbr-congestion-control-mod.patch
-	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0017-net-tcp_bbr-v3-ensure-ECN-enabled-BBR-flows-set-ECT-.patch
-	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0018-tcp-export-TCPI_OPT_ECN_LOW-in-tcp_info-tcpi_options.patch
-popd
+# # BBRv3 - linux-6.6
+# pushd target/linux/generic/backport-6.6
+# 	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0001-net-tcp_bbr-broaden-app-limited-rate-sample-detectio.patch
+# 	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0002-net-tcp_bbr-v2-shrink-delivered_mstamp-first_tx_msta.patch
+# 	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0003-net-tcp_bbr-v2-snapshot-packets-in-flight-at-transmi.patch
+# 	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0004-net-tcp_bbr-v2-count-packets-lost-over-TCP-rate-samp.patch
+# 	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0005-net-tcp_bbr-v2-export-FLAG_ECE-in-rate_sample.is_ece.patch
+# 	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0006-net-tcp_bbr-v2-introduce-ca_ops-skb_marked_lost-CC-m.patch
+# 	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0007-net-tcp_bbr-v2-adjust-skb-tx.in_flight-upon-merge-in.patch
+# 	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0008-net-tcp_bbr-v2-adjust-skb-tx.in_flight-upon-split-in.patch
+# 	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0009-net-tcp-add-new-ca-opts-flag-TCP_CONG_WANTS_CE_EVENT.patch
+# 	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0010-net-tcp-re-generalize-TSO-sizing-in-TCP-CC-module-AP.patch
+# 	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0011-net-tcp-add-fast_ack_mode-1-skip-rwin-check-in-tcp_f.patch
+# 	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0012-net-tcp_bbr-v2-record-app-limited-status-of-TLP-repa.patch
+# 	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0013-net-tcp_bbr-v2-inform-CC-module-of-losses-repaired-b.patch
+# 	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0014-net-tcp_bbr-v2-introduce-is_acking_tlp_retrans_seq-i.patch
+# 	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0015-tcp-introduce-per-route-feature-RTAX_FEATURE_ECN_LOW.patch
+# 	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0016-net-tcp_bbr-v3-update-TCP-bbr-congestion-control-mod.patch
+# 	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0017-net-tcp_bbr-v3-ensure-ECN-enabled-BBR-flows-set-ECT-.patch
+# 	curl -Os https://raw.githubusercontent.com/sbwml/r4s_build_script/5b5d6a5b7fe9a20ac6d52304e914be76c4bb1528/openwrt/patch/kernel-6.6/bbr3/010-bbr3-0018-tcp-export-TCPI_OPT_ECN_LOW-in-tcp_info-tcpi_options.patch
+# popd
