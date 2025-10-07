@@ -12,7 +12,7 @@
 sed -i '$a\src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
 
 
-sed -i 's/+luci-compat/+luci-base/g' package/lean/default-settings/Makefile
+# sed -i 's/+luci-compat/+luci-base/g' package/lean/default-settings/Makefile
 
 
 
@@ -24,7 +24,7 @@ sed -i '$a\src-git helloworld https://github.com/fw876/helloworld' feeds.conf.de
 # rm -rf feeds/packages/lang/golang
 # git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
 
-sed -i '53i\TARGET_CFLAGS += -fPIC' package/network/utils/fullconenat/Makefile
+# sed -i '53i\TARGET_CFLAGS += -fPIC' package/network/utils/fullconenat/Makefile
 
 # Add a feed source
 #sed -i '$a src-git lienol https://github.com/Lienol/openwrt-package' feeds.conf.default
