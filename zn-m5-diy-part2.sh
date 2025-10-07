@@ -8,8 +8,10 @@
 # Blog: https://p3terx.com
 #============================================================
 
+curl -s https://github.com/immortalwrt/immortalwrt/raw/refs/heads/master/package/base-files/files/bin/config_generate > package/base-files/files/bin/config_generate
+
 # Modify default IP
-# sed -i 's/192.168.6.1/10.0.2.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/10.0.2.1/g' package/base-files/files/bin/config_generate
 # sed -i '/--dport 53 -j REDIRECT --to-ports 53/d' package/lean/default-settings/files/zzz-default-settings
 sed -i -r '/elseif szType == ("sip008"|'\''vmess'\'') then/i\\t\tresult.fast_open = "1"' feeds/helloworld/luci-app-ssr-plus/root/usr/share/shadowsocksr/subscribe.lua
 
@@ -23,6 +25,7 @@ git clone --single-branch --depth=1 https://github.com/jerrykuku/luci-app-argon-
 # sed -i '110d' feeds/packages/libs/qtbase/Makefile
 # rm -rf target/linux/ramips/patches-5.4/999-fix-hwnat.patch
 # rm -rf target/linux/ramips/patches-5.10/999-fix-hwnat.patch
+
 
 rm -rf package/network/services/dnsmasq
 ../gh-down.sh https://github.com/immortalwrt/immortalwrt/tree/master/package/network/services/dnsmasq package/network/services/dnsmasq
