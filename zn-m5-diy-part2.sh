@@ -26,9 +26,8 @@ git clone --single-branch --depth=1 https://github.com/jerrykuku/luci-app-argon-
 # rm -rf target/linux/ramips/patches-5.4/999-fix-hwnat.patch
 # rm -rf target/linux/ramips/patches-5.10/999-fix-hwnat.patch
 
-
-rm -rf package/network/services/dnsmasq
-../gh-down.sh https://github.com/immortalwrt/immortalwrt/tree/master/package/network/services/dnsmasq package/network/services/dnsmasq
+# rm -rf package/network/services/dnsmasq
+# ../gh-down.sh https://github.com/immortalwrt/immortalwrt/tree/master/package/network/services/dnsmasq package/network/services/dnsmasq
 
 # rm -rf package/libs/openssl
 # ../gh-down.sh https://github.com/immortalwrt/immortalwrt/tree/master/package/libs/openssl package/libs/openssl
