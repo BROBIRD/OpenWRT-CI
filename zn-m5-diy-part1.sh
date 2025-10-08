@@ -9,12 +9,13 @@
 #=============================================================
 
 
-sed -i '$a\src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
-rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb}
+# sed -i '$a\src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
+# rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb}
 
 # sed -i 's/+luci-compat/+luci-base/g' package/lean/default-settings/Makefile
 
-
+rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
+git clone https://github.com/sbwml/openwrt_helloworld package/helloworld
 
 # Uncomment a feed source
 sed -i '$a\src-git helloworld https://github.com/fw876/helloworld' feeds.conf.default
