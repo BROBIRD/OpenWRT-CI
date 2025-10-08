@@ -8,10 +8,10 @@
 # Blog: https://p3terx.com
 #============================================================
 
-curl -s https://github.com/immortalwrt/immortalwrt/raw/refs/heads/master/package/base-files/files/bin/config_generate > package/base-files/files/bin/config_generate
+# curl -s https://github.com/immortalwrt/immortalwrt/raw/refs/heads/master/package/base-files/files/bin/config_generate > package/base-files/files/bin/config_generate
 
 # Modify default IP
-sed -i 's/192.168.1.1/10.0.2.1/g' package/base-files/files/bin/config_generate
+# sed -i 's/192.168.1.1/10.0.2.1/g' package/base-files/files/bin/config_generate
 # sed -i '/--dport 53 -j REDIRECT --to-ports 53/d' package/lean/default-settings/files/zzz-default-settings
 sed -i -r '/elseif szType == ("sip008"|'\''vmess'\'') then/i\\t\tresult.fast_open = "1"' feeds/helloworld/luci-app-ssr-plus/root/usr/share/shadowsocksr/subscribe.lua
 
