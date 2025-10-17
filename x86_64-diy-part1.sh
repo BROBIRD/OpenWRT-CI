@@ -27,7 +27,7 @@ sed -i '$a\src-git smpackage https://github.com/kenzok8/small-package' feeds.con
 
 # git clone https://github.com/jerrykuku/lua-maxminddb.git package/lean/lua-maxminddb
 # # git clone https://github.com/jerrykuku/luci-app-vssr.git package/lean/luci-app-vssr
-# git clone https://github.com/rufengsuixing/luci-app-adguardhome.git package/extra/luci-app-adguardhome
+# git clone https://github.com/stevenjoezhang/luci-app-adguardhome.git package/extra/luci-app-adguardhome
 # sed -i '11i\PKG_BUILD_DEPENDS += lua/host luci-base/host' package/extra/luci-app-adguardhome/Makefile
 
 # git clone https://github.com/jerrykuku/luci-app-jd-dailybonus.git package/extra/luci-app-jd-dailybonus
