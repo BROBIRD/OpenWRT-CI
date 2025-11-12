@@ -177,6 +177,8 @@ git clone --single-branch --depth=1 https://github.com/sbwml/luci-app-mosdns -b 
 git clone --single-branch --depth=1 https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 
 rm -rf feeds/smpackage/gost/patches
+rm -rf feeds/smpackage/luci-app-gost
+../gh-down.sh https://github.com/kenzok8/openwrt-packages/tree/master/luci-app-gost feeds/smpackage/luci-app-gost
 rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb,tcping}
 
 # sed -i 's#+$(NINJA) -C $(HOST_BUILD_DIR)/out#ninja -C $(HOST_BUILD_DIR)/out#g' feeds/helloworld/gn/Makefile
