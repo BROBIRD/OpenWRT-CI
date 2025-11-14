@@ -126,6 +126,9 @@ sed -i 's/627fe086209bba80a2853a0add9d958d7ebbdffa1a8467a5784c9a6b4f03d738/c6b5c
 rm -rf feeds/packages/net/uwsgi
 ../gh-down.sh https://github.com/immortalwrt/packages/tree/master/net/uwsgi feeds/packages/net/uwsgi
 
+rm -rf feeds/packages/net/uwsgi/files-luci-support
+../gh-down.sh https://github.com/coolsnowwolf/packages/tree/master/net/uwsgi/files-luci-support feeds/packages/net/uwsgi/files-luci-support
+
 # sed -i '261a\config NGINX_NJS_MODULE\n\tbool\n\tprompt "Enable NJS module"\n\thelp\n\t\tAdd support for Javascript dynamic module.\n\tdefault n\n' feeds/packages/net/nginx/Config_ssl.in
 # # sed -i '582a\$(eval $(call BuildPackage,nginx-mod-njs))' feeds/packages/net/nginx/Makefile
 # sed -i '566a\ifeq ($(CONFIG_NGINX_NJS_MODULE),y)\n  $(eval $(call Download,nginx-njs))\n  $(Prepare/nginx-njs)\nendif\n' feeds/packages/net/nginx/Makefile
