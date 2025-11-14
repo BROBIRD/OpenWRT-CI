@@ -9,7 +9,7 @@
 #=============================================================
 
 # Uncomment a feed source
-sed -i '/src-git.*helloworld/s/^/#/' feeds.conf.default
+sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 
 # 启用旧版Luci
 sed -i 's/^#\(.*luci\)/\1/' feeds.conf.default
