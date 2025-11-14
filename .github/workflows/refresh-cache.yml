@@ -71,6 +71,14 @@ jobs:
             DEVICE_SUBTARGET=$(cat openwrt/.config | grep CONFIG_TARGET_SUBTARGET | awk -F '"' '{print $2}')
             echo "DEVICE_SUBTARGET=$DEVICE_SUBTARGET" >> $GITHUB_ENV
 
+      - name: Cache
+        uses: HiGarfield/cachewrtbuild@main
+        with:
+          ccache: 'true'
+          mixkey: ${{ env.SOURCE_REPO }}-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
+          prefix: ${{ env.OPENWRT_PATH }}
+          skip_saving: 'true'
+          
       - name: Load custom feeds
         run: |
           [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
@@ -95,13 +103,6 @@ jobs:
           cd openwrt
           $GITHUB_WORKSPACE/${{ matrix.p1p2 }}-diy-part2.sh
 
-      - name: Cache
-        uses: HiGarfield/cachewrtbuild@main
-        with:
-          ccache: 'true'
-          mixkey: ${{ env.SOURCE_REPO }}-${{ env.REPO_BRANCH }}-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
-          prefix: ${{ env.OPENWRT_PATH }}
-          skip_saving: 'true'
       
       # - name: Restore cached dl
       #   id: restore_cached_dl
