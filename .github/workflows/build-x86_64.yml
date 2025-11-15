@@ -180,7 +180,7 @@ jobs:
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled() && steps.compile.outputs.status == 'success'
       run: |
-        cp -f openwrt/.config openwrt/bin/targets/Config.txt
+        cp -f openwrt/.config openwrt/bin/targets/*/*/Config.txt
         cd openwrt/bin/targets/*/*
         rm -rf packages
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
