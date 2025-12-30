@@ -172,9 +172,9 @@ pushd target/linux/generic/backport-6.12
 popd
 
 
-# Try update acme.sh
-# sed -i 's/3.0.3/3.0.7/g' feeds/packages/net/acme/Makefile
-# sed -i 's/601a1688b5e2fdd567c3ee308be243e9329b286336e4a709ee2157eff7b06aaf/abd446d6bd45d0b44dca1dcbd931348797a3f82d1ed6fb171472eaf851a8d849/g' feeds/packages/net/acme/Makefile
+Try update acme.sh
+sed -i 's/3.0.7/3.1.2/g' feeds/packages/net/acme/Makefile
+sed -i 's/abd446d6bd45d0b44dca1dcbd931348797a3f82d1ed6fb171472eaf851a8d849/a51511ad0e2912be45125cf189401e4ae776ca1a29d5768f020a1e35a9560186/g' feeds/packages/net/acme/Makefile
 
 # drop mosdns and v2ray-geodata packages that come with the source
 find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
