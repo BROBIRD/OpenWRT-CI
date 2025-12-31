@@ -72,5 +72,3 @@ git clone --single-branch --depth=1 -b master https://github.com/vernesong/OpenC
 # git clone https://github.com/sirpdboy/luci-app-lucky.git package/extra/luci-app-lucky
 # git clone --single-branch --depth=1 https://github.com/sirpdboy/luci-app-advancedplus.git package/extra/luci-app-advancedplus
 
-rm -fr feeds/luci/applications/luci-app-zerotier
-git clone --depth=1 https://github.com/BROBIRD/luci-app-zerotier.git feeds/luci/applications/luci-app-zerotier

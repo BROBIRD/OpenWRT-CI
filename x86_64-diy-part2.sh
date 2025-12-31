@@ -190,4 +190,7 @@ rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftabl
 
 git clone --single-branch --depth=1 https://github.com/EasyTier/luci-app-easytier.git package/extra/luci-app-easytier
 
+rm -fr feeds/luci/applications/luci-app-zerotier
+git clone --depth=1 https://github.com/BROBIRD/luci-app-zerotier.git feeds/luci/applications/luci-app-zerotier
+
 # sed -i 's#+$(NINJA) -C $(HOST_BUILD_DIR)/out#ninja -C $(HOST_BUILD_DIR)/out#g' feeds/helloworld/gn/Makefile
