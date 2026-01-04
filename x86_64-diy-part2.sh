@@ -194,3 +194,5 @@ rm -fr feeds/luci/applications/luci-app-zerotier
 git clone --depth=1 https://github.com/BROBIRD/luci-app-zerotier.git feeds/luci/applications/luci-app-zerotier
 
 # sed -i 's#+$(NINJA) -C $(HOST_BUILD_DIR)/out#ninja -C $(HOST_BUILD_DIR)/out#g' feeds/helloworld/gn/Makefile
+
+rm -rf packages/net/microsocks
