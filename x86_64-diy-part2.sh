@@ -196,7 +196,7 @@ git clone --depth=1 https://github.com/BROBIRD/luci-app-zerotier.git feeds/luci/
 # sed -i 's#+$(NINJA) -C $(HOST_BUILD_DIR)/out#ninja -C $(HOST_BUILD_DIR)/out#g' feeds/helloworld/gn/Makefile
 
 rm -rf feeds/packages/net/microsocks
-ln -sf feeds/helloworld/net/microsocks feeds/packages/net/microsocks
+ln -sf feeds/helloworld/microsocks feeds/packages/net/microsocks
 # ./scripts/feeds uninstall helloworld  # 先卸载
 # ./scripts/feeds install -p helloworld  # 重新安装
 # rm -rf tmp/info/.package*
