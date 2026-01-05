@@ -172,7 +172,7 @@ pushd target/linux/generic/backport-6.12
 popd
 
 
-Try update acme.sh
+# Try update acme.sh
 sed -i 's/3.0.7/3.1.2/g' feeds/packages/net/acme/Makefile
 sed -i 's/abd446d6bd45d0b44dca1dcbd931348797a3f82d1ed6fb171472eaf851a8d849/a51511ad0e2912be45125cf189401e4ae776ca1a29d5768f020a1e35a9560186/g' feeds/packages/net/acme/Makefile
 
@@ -196,3 +196,4 @@ git clone --depth=1 https://github.com/BROBIRD/luci-app-zerotier.git feeds/luci/
 # sed -i 's#+$(NINJA) -C $(HOST_BUILD_DIR)/out#ninja -C $(HOST_BUILD_DIR)/out#g' feeds/helloworld/gn/Makefile
 
 rm -rf feeds/packages/net/microsocks
+ln -s feeds/smpackage/net/microsocks feeds/packages/net/microsocks
