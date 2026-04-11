@@ -9,7 +9,7 @@
 #=============================================================
 
 
-# sed -i '$a\src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
+# sed -i '$a\src-git smpackage https://github.com/kenzok8/jell' feeds.conf.default
 # rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb}
 
 # sed -i 's/+luci-compat/+luci-base/g' package/lean/default-settings/Makefile
@@ -19,7 +19,7 @@ git clone https://github.com/sbwml/openwrt_helloworld package/helloworld
 
 # Uncomment a feed source
 sed -i '$a\src-git helloworld https://github.com/fw876/helloworld' feeds.conf.default
-# sed -i '$a\src-git passwall https://github.com/xiaorouji/openwrt-passwall' feeds.conf.default
+# sed -i '$a\src-git passwall https://github.com/Openwrt-Passwall/openwrt-passwall' feeds.conf.default
 
 # # 更新 golang 1.24 版本
 # rm -rf feeds/packages/lang/golang

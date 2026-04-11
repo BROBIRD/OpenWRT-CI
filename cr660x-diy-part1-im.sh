@@ -10,8 +10,8 @@
 
 # Uncomment a feed source
 sed -i '$a\src-git helloworld https://github.com/fw876/helloworld' feeds.conf.default
-# sed -i '$a\src-git passwall https://github.com/xiaorouji/openwrt-passwall' feeds.conf.default
-# sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
+# sed -i '$a\src-git passwall https://github.com/Openwrt-Passwall/openwrt-passwall' feeds.conf.default
+# sed -i '$a src-git smpackage https://github.com/kenzok8/jell' feeds.conf.default
 
 # 移除 openwrt feeds 自带的核心包
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
