@@ -119,15 +119,15 @@ rm -rf feeds/packages/net/nginx
 git clone --single-branch --depth=1 https://github.com/sbwml/feeds_packages_net_nginx -b quic+zstd feeds/packages/net/nginx
 # curl -s https://raw.githubusercontent.com/kn007/patch/e2fcf45e320bb8317042b6796b8f9dd42ffdb25c/nginx_dynamic_tls_records.patch > feeds/packages/net/nginx/patches/nginx/105-nginx_dynamic_tls_records.patch
 sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g;s/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/net/nginx/files/nginx.init
-sed -i 's/1.26.2/1.28.0/g' feeds/packages/net/nginx/Makefile
-sed -i 's/627fe086209bba80a2853a0add9d958d7ebbdffa1a8467a5784c9a6b4f03d738/c6b5c6b086c0df9d3ca3ff5e084c1d0ef909e6038279c71c1c3e985f576ff76a/g' feeds/packages/net/nginx/Makefile
+sed -i 's/1.26.2/1.30.0/g' feeds/packages/net/nginx/Makefile
+sed -i 's/627fe086209bba80a2853a0add9d958d7ebbdffa1a8467a5784c9a6b4f03d738/058188c64bf22baecaa72b809a6318a4f9ba623889c554feab03f7cb853ab31b/g' feeds/packages/net/nginx/Makefile
 
-# uwsgi - latest version
-rm -rf feeds/packages/net/uwsgi
-../gh-down.sh https://github.com/immortalwrt/packages/tree/master/net/uwsgi feeds/packages/net/uwsgi
+# # uwsgi - latest version
+# rm -rf feeds/packages/net/uwsgi
+# ../gh-down.sh https://github.com/immortalwrt/packages/tree/master/net/uwsgi feeds/packages/net/uwsgi
 
-rm -rf feeds/packages/net/uwsgi/files-luci-support
-../gh-down.sh https://github.com/coolsnowwolf/packages/tree/master/net/uwsgi/files-luci-support feeds/packages/net/uwsgi/files-luci-support
+# rm -rf feeds/packages/net/uwsgi/files-luci-support
+# ../gh-down.sh https://github.com/coolsnowwolf/packages/tree/master/net/uwsgi/files-luci-support feeds/packages/net/uwsgi/files-luci-support
 
 # sed -i '261a\config NGINX_NJS_MODULE\n\tbool\n\tprompt "Enable NJS module"\n\thelp\n\t\tAdd support for Javascript dynamic module.\n\tdefault n\n' feeds/packages/net/nginx/Config_ssl.in
 # # sed -i '582a\$(eval $(call BuildPackage,nginx-mod-njs))' feeds/packages/net/nginx/Makefile
