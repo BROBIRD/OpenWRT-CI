@@ -172,9 +172,9 @@ pushd target/linux/generic/backport-6.12
 popd
 
 
-# Try update acme.sh
-sed -i 's/3.0.7/3.1.2/g' feeds/packages/net/acme/Makefile
-sed -i 's/abd446d6bd45d0b44dca1dcbd931348797a3f82d1ed6fb171472eaf851a8d849/a51511ad0e2912be45125cf189401e4ae776ca1a29d5768f020a1e35a9560186/g' feeds/packages/net/acme/Makefile
+# # Try update acme.sh
+# sed -i 's/3.0.7/3.1.2/g' feeds/packages/net/acme/Makefile
+# sed -i 's/abd446d6bd45d0b44dca1dcbd931348797a3f82d1ed6fb171472eaf851a8d849/a51511ad0e2912be45125cf189401e4ae776ca1a29d5768f020a1e35a9560186/g' feeds/packages/net/acme/Makefile
 
 # drop mosdns and v2ray-geodata packages that come with the source
 find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
@@ -183,7 +183,7 @@ find ./ | grep Makefile | grep mosdns | xargs rm -f
 git clone --single-branch --depth=1 https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone --single-branch --depth=1 https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 
-rm -rf feeds/smpackage/gost/patches
+# rm -rf feeds/smpackage/gost/patches
 rm -rf feeds/smpackage/luci-app-gost
 ../gh-down.sh https://github.com/kenzok8/openwrt-packages/tree/master/luci-app-gost feeds/smpackage/luci-app-gost
 rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb,tcping}
