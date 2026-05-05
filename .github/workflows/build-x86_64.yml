@@ -132,6 +132,8 @@ jobs:
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
 
 
     - name: SSH connection to Actions
